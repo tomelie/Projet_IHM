@@ -1,4 +1,6 @@
-<h1>TMDB + Firebase</h1>
+<h1>ZMOVIES</h1>
+
+<hr/>
 <nav *ngIf="user">
   <label>{{user.displayName}}</label>
   <img [src]="user.photoURL" />
@@ -8,18 +10,44 @@
 <nav *ngIf="!user">
   <button (click)="login()">Connection via Google</button>
 </nav>
-
 <hr/>
-<pre *ngIf="lists">
-  {{lists | async | json}}
-</pre>
 
-<hr/>
-<section *ngIf="movie">
-  <img [src]="getPath(movie.poster_path)" />
-  <pre>{{movie | json}}</pre>
-</section>
-<section *ngIf="!movie">
-  Pas encore de films à afficher...
-</section>
+<form (submit)="search(searchInput.value)">
+  <mat-form-field class="input-general">
+    <input matInput placeholder="Rechercher un Film"  #searchInput>
+  </mat-form-field>
+</form>
+
+<app-movie *ngFor = "let id of movieId" [movieId]="id"></app-movie>
+
+<mat-tab-group dynamicHeight class="tab-result" >
+  <mat-tab label="Résultats" *ngIf="currentSearchRes" >
+    <thead>
+    <th #poster>Poster</th>
+    <th #titre>Titre</th>
+    <th #description>Description</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let movie of currentSearchRes.results" (click)="(movie.id)">
+      <td ><img src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}" alt=""/></td>
+      <td>{{movie.title}}</td>
+      <td>{{movie.overview}}</td>
+    </tr>
+    </tbody>
+  </mat-tab>
+</mat-tab-group>
+
+<!--<pre *ngIf="lists">-->
+  <!--{{lists | async | json}}-->
+<!--</pre>-->
+
+<!--<hr/>-->
+<!--<section *ngIf="movie">-->
+  <!--<img [src]="getPath(movie.poster_path)" />-->
+  <!--<pre>{{movie | json}}</pre>-->
+<!--</section>-->
+<!--<section *ngIf="!movie">-->
+  <!--Pas encore de films à afficher...-->
+<!--</section>&ndash;&gt;-->
+
 

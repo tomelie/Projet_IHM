@@ -48,7 +48,7 @@ export class TmdbService {
     return res.body;
   }
 
-  async searchMovie(query: SearchMovieQuery): Promise<SearchMovieResponse> {
+  async searchMovie(query: { query: string }): Promise<SearchMovieResponse> {
     const url = `${tmdbApi}/search/movie`;
     const res = await this.get<SearchMovieResponse>(url, query);
     return res.body;
