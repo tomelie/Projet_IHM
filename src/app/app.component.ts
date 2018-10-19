@@ -6,7 +6,6 @@ import {auth, User} from 'firebase';
 import {Observable} from 'rxjs';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {filter} from 'rxjs/operators';
-import {SearchMovieResponse} from './tmdb-data/searchMovie';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +16,6 @@ export class AppComponent {
   private _movie: MovieResponse;
   private _user: User;
   private dbData: Observable<any>;
-  currentSearchRes: SearchMovieResponse;
 
   constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
     tmdb.init('25ea93320b0ede2eb2ce7b2661886a0e');
@@ -60,19 +58,6 @@ export class AppComponent {
 
   get lists(): Observable<any> {
     return this.dbData;
-  }
-
-  search(txt: string) {
-    if (!txt) {
-      return;
-    }
-    this.tmdb.searchMovie({query: txt}).then(
-      res => this.currentSearchRes = res
-    );
-  }
-
-  gotoMovie(id: number) {
-    this.tmdb.getMovie(id);
   }
 }
 // /yE5d3BUhE8hCnkMUJOo1QDoOGNz.jpg

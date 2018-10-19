@@ -1,0 +1,42 @@
+<form (submit)="sdSearchMovie(searchInput.value)">
+  <mat-form-field class="input-general">
+    <input matInput placeholder="Rechercher un Film"  #searchInput>
+  </mat-form-field>
+</form>
+
+<form (submit)="sdSearchActor(searchInput.value)">
+  <mat-form-field class="input-general">
+    <input matInput placeholder="Rechercher un Acteur"  #searchInput>
+  </mat-form-field>
+</form>
+
+<mat-tab-group dynamicHeight class="tab-result" >
+  <mat-tab label="Résultats" *ngIf="currentSearchResMovie" >
+    <thead>
+    <th #poster>Poster</th>
+    <th #titre>Titre</th>
+    <th #description>Description</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let movie of currentSearchResMovie.results" (click)="(movie.id)">
+      <td ><img src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}" alt=""/></td>
+      <td>{{movie.title}}</td>
+      <td>{{movie.overview}}</td>
+    </tr>
+    </tbody>
+  </mat-tab>
+</mat-tab-group>
+
+
+<mat-tab-group dynamicHeight class="tab-result" >
+  <mat-tab label="Résultats" *ngIf="currentSearchResActor" >
+    <thead>
+    <th #name>name</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let person of currentSearchResActor.results" (click)="(person.id)">
+      <td>{{person.name}}</td>
+    </tr>
+    </tbody>
+  </mat-tab>
+</mat-tab-group>
