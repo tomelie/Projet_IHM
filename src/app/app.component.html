@@ -18,7 +18,7 @@
   </mat-form-field>
 </form>
 
-<app-movie *ngFor = "let id of movieId" [movieId]="id"></app-movie>
+<app-listmovie *ngFor = "let id of movieId" [movieId]="id"></app-listmovie>
 
 <mat-tab-group dynamicHeight class="tab-result" >
   <mat-tab label="Résultats" *ngIf="currentSearchRes" >

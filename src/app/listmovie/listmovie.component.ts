@@ -3,7 +3,7 @@ import {TmdbService} from '../tmdb.service';
 import {MovieResponse} from '../tmdb-data/Movie';
 
 @Component({
-  selector: 'app-movie',
+  selector: 'app-listmovie',
   templateUrl: './listmovie.component.html',
   styleUrls: ['./listmovie.component.css']
 })
