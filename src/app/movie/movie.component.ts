@@ -1,6 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {TmdbService} from '../tmdb.service';
-import {MovieResponse} from '../tmdb-data/Movie';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-movie',
@@ -9,14 +7,9 @@ import {MovieResponse} from '../tmdb-data/Movie';
 })
 export class MovieComponent implements OnInit {
 
-  data: MovieResponse;
-
-  @Input() movieId: number;
-
-  constructor(private tmdb: TmdbService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.tmdb.getMovie(this.movieId).then(data => this.data = data);
   }
 
 }
