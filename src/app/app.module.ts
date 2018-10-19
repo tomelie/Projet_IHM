@@ -11,7 +11,6 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatInputModule, MatTabsModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
-import {ListmovieComponent} from './listmovie/listmovie.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserComponent } from './user/user.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -19,11 +18,11 @@ import { OverlayconnexionComponent } from './overlayconnexion/overlayconnexion.c
 import { ActorComponent } from './actor/actor.component';
 import { ListactorComponent } from './listactor/listactor.component';
 import { MovieComponent } from './movie/movie.component';
+import { ListmovieComponent } from './listmovie/listmovie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListmovieComponent,
     SidebarComponent,
     UserComponent,
     ProfileComponent,
@@ -31,6 +30,7 @@ import { MovieComponent } from './movie/movie.component';
     ActorComponent,
     ListactorComponent,
     MovieComponent,
+    ListmovieComponent,
   ],
   imports: [
     BrowserModule,
