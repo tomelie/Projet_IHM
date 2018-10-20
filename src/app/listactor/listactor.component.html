@@ -1,3 +1,4 @@
-<p>
-  {{data | json}}
-</p>
+<section *ngIf="actors">
+  <app-actor *ngFor="let actor of actors" [actor]="actor">
+  </app-actor>
+</section>
