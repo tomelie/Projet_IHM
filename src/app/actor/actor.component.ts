@@ -16,7 +16,10 @@ export class ActorComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ActorDialogComponent, {
-      width: '250px',
+      width: '250em',
+      data: {
+        actor: this.actor,
+      },
     });
   }
 }
