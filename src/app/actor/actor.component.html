@@ -1,8 +1,5 @@
-<mat-grid-tile-header *ngIf="actor">
-  <h3 mat-raised-button (click)="openDialog()">{{actor.name}}</h3>
-</mat-grid-tile-header>
-
-<img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{actor.profile_path}}" layout-fill>
+<img mat-raised-button (click)="openDialog()" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{actor.profile_path}}"
+  layout-fill>
 <mat-grid-tile-footer>
-  <button mat-raised-button (click)="openDialog()">Voir</button>
+  <h3>{{ actor.name }}</h3>
 </mat-grid-tile-footer>
