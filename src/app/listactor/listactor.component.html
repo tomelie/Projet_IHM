@@ -1,4 +1,5 @@
-<section *ngIf="actors">
-  <app-actor *ngFor="let actor of actors" [actor]="actor">
-  </app-actor>
-</section>
+<mat-grid-list cols="4" rowHeight="1:1" *ngIf="actors">
+  <mat-grid-tile *ngFor="let actor of actors">
+    <app-actor [actor]="actor"></app-actor>
+  </mat-grid-tile>
+</mat-grid-list>
