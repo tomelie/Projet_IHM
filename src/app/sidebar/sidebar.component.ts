@@ -21,6 +21,7 @@ export class SidebarComponent implements OnInit {
     if (!txt) {
       return;
     }
+    this.currentSearchResActor = null;
     this.tmdb.searchMovie({query: txt}).then(
       res => this.currentSearchResMovie = res
     );
@@ -30,6 +31,7 @@ export class SidebarComponent implements OnInit {
     if (!txt) {
       return;
     }
+    this.currentSearchResMovie = null;
     this.tmdb.searchPerson({query: txt}).then(
       res => this.currentSearchResActor = res
     );

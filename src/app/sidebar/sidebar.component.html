@@ -1,12 +1,12 @@
-<form (submit)="sdSearchMovie(searchInput.value)">
+<form (submit)="sdSearchMovie(searchInputMovie.value)">
   <mat-form-field class="input-general">
-    <input matInput placeholder="Rechercher un Film"  #searchInput>
+    <input matInput placeholder="Rechercher un Film"  #searchInputMovie>
   </mat-form-field>
 </form>
 
-<form (submit)="sdSearchActor(searchInput.value)">
+<form (submit)="sdSearchActor(searchInputActor.value)">
   <mat-form-field class="input-general">
-    <input matInput placeholder="Rechercher un Acteur"  #searchInput>
+    <input matInput placeholder="Rechercher un Acteur"  #searchInputActor>
   </mat-form-field>
 </form>
 
