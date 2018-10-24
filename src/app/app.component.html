@@ -1,4 +1,6 @@
-<h1>TMDB + Firebase</h1>
+<h1>ZMOVIES</h1>
+
+<hr/>
 <nav *ngIf="user">
   <label>{{user.displayName}}</label>
   <img [src]="user.photoURL" />
@@ -8,18 +10,22 @@
 <nav *ngIf="!user">
   <button (click)="login()">Connection via Google</button>
 </nav>
-
 <hr/>
-<pre *ngIf="lists">
-  {{lists | async | json}}
-</pre>
 
-<hr/>
-<section *ngIf="movie">
-  <img [src]="getPath(movie.poster_path)" />
-  <pre>{{movie | json}}</pre>
-</section>
-<section *ngIf="!movie">
-  Pas encore de films à afficher...
-</section>
+<app-sidebar></app-sidebar>
+<app-listmovie *ngFor = "let id of movieId" [movieId]="id"></app-listmovie>
+
+<!--<pre *ngIf="lists">-->
+  <!--{{lists | async | json}}-->
+<!--</pre>-->
+
+<!--<hr/>-->
+<!--<section *ngIf="listmovie">-->
+  <!--<img [src]="getPath(listmovie.poster_path)" />-->
+  <!--<pre>{{listmovie | json}}</pre>-->
+<!--</section>-->
+<!--<section *ngIf="!listmovie">-->
+  <!--Pas encore de films à afficher...-->
+<!--</section>&ndash;&gt;-->
+
 
