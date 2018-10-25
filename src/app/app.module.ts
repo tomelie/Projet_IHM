@@ -21,6 +21,8 @@ import { MovieComponent } from './movie/movie.component';
 import { ListmovieComponent } from './listmovie/listmovie.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainPageComponent } from './main-page/main-page.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +36,10 @@ import { MainPageComponent } from './main-page/main-page.component';
     MovieComponent,
     ListmovieComponent,
     MainPageComponent,
+    NavbarComponent,
   ],
   imports: [
+    MatMenuModule,
     BrowserModule,
     HttpClientModule,
     AngularFireModule.initializeApp( environment.firebase ),
