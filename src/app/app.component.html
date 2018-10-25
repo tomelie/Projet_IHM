@@ -8,11 +8,17 @@
   {{user.uid}}
 </nav>
 <nav *ngIf="!user">
+  <button routerLink="/home" routerLinkActive="active">Accueil</button>
+  <button routerLink="/actors" routerLinkActive="active">Acteurs</button>
+  <button routerLink="/movies" routerLinkActive="active">Film</button>
+
   <button (click)="login()">Connection via Google</button>
 </nav>
 <hr/>
 
 <app-sidebar></app-sidebar>
+
+<router-outlet></router-outlet>
 <app-listmovie *ngFor = "let id of movieId" [movieId]="id"></app-listmovie>
 
 <!--<pre *ngIf="lists">-->

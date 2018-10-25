@@ -19,6 +19,8 @@ import { ActorComponent } from './actor/actor.component';
 import { ListactorComponent } from './listactor/listactor.component';
 import { MovieComponent } from './movie/movie.component';
 import { ListmovieComponent } from './listmovie/listmovie.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { ListmovieComponent } from './listmovie/listmovie.component';
     ListactorComponent,
     MovieComponent,
     ListmovieComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { ListmovieComponent } from './listmovie/listmovie.component';
     MatCheckboxModule,
     MatInputModule,
     MatTabsModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent]
