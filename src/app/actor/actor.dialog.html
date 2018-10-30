@@ -1,7 +1,16 @@
-<section *ngIf="data">
-  <h1 mat-dialog-title>Hi {{ data.actor.name }}</h1>
+<section *ngIf="details">
+  <h1 mat-dialog-title>Hi {{ details.name }}</h1>
   <div mat-dialog-content>
-    <p>What's your favorite animal?</p>
+    <ul>
+      <li>Popularité : {{ details.popularity }}</li>
+      <li>Lieu de naissance : {{ details.place_of_birth }}</li>
+      <li>Image : {{ details.profile_path }}</li>
+      <li>Date de naissance : {{ details.birthday }}</li>
+      <li>Date de mort : {{ details.deathday}}</li>
+      <li>Surnoms : {{ details.also_known_as }}</li>
+      <li>Sexe : {{ details.gender }}</li>
+      <li>Biographie : {{ details.biography }}</li>
+    </ul>
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">No Thanks</button>

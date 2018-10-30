@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { TmdbService } from '../tmdb.service';
+import { PersonResponse } from '../tmdb-data/Person';
 
 @Component({
   selector: 'app-actor',
@@ -8,7 +10,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class ActorComponent implements OnInit {
   @Input()
-  actor: JSON;
+  actor: PersonResponse;
 
   constructor(public dialog: MatDialog) {}
 
@@ -17,9 +19,7 @@ export class ActorComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(ActorDialogComponent, {
       width: '250em',
-      data: {
-        actor: this.actor,
-      },
+      data: this.actor,
     });
   }
 }
@@ -29,7 +29,15 @@ export class ActorComponent implements OnInit {
   templateUrl: 'actor.dialog.html',
 })
 export class ActorDialogComponent {
-  constructor(public dialogRef: MatDialogRef<ActorDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  details: PersonResponse;
+
+  constructor(
+    public tmdb: TmdbService,
+    public dialogRef: MatDialogRef<ActorDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public actor: PersonResponse
+  ) {
+    tmdb.getPerson(actor.id).then(res => (this.details = res));
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -37,5 +45,6 @@ export class ActorDialogComponent {
 }
 
 export interface DialogData {
-  data: String;
+  data: number;
+  id: number;
 }
