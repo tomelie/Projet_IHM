@@ -11,12 +11,13 @@ import { MovieResponse } from '../tmdb-data/Movie';
 export class MovieComponent implements OnInit {
   @Input()
   movie: MovieResponse;
-  constructor(public dialog: MatDialog) {}
+
+  constructor(public MovieDialog: MatDialog) {}
 
   ngOnInit() {}
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(MovieDialogComponent, {
+    const dialogRef = this.MovieDialog.open(MovieDialogComponent, {
       width: '250em',
       data: this.movie,
     });
@@ -36,9 +37,15 @@ export class MovieDialogComponent {
     @Inject(MAT_DIALOG_DATA) public movie: MovieResponse
   ) {
     tmdb.getMovie(movie.id).then(res => (this.details = res));
+    console.log(this.details);
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
+}
+
+export interface DialogData {
+  data: number;
+  id: number;
 }

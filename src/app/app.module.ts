@@ -48,7 +48,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MainPageComponent,
     NavbarComponent,
   ],
-  entryComponents: [ActorDialogComponent],
+  entryComponents: [ActorDialogComponent, MovieDialogComponent],
   imports: [
     MatMenuModule,
     BrowserModule,

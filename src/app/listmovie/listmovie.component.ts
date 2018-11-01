@@ -8,10 +8,8 @@ import { MovieResponse } from '../tmdb-data/Movie';
   styleUrls: ['./listmovie.component.css'],
 })
 export class ListmovieComponent implements OnInit {
-  data: MovieResponse;
-
   @Input()
-  movies: JSON;
+  movies: MovieResponse[];
 
   constructor(private tmdb: TmdbService) {}
 
