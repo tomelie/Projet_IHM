@@ -1,0 +1,43 @@
+<section *ngIf="details" class="mat-typography">
+  <h1 mat-dialog-title>{{ details.name }}</h1>
+  <div mat-dialog-content>
+    <mat-grid-list cols="3" rowHeight="10em">
+      <mat-grid-tile [colspan]="1" [rowspan]="3">
+        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{details.profile_path}}" layout-fill>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <p>{{ details.also_known_as }}</p>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <h2>Popularité : {{ details.popularity }}</h2>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2">
+        <ul>
+          <li>Sexe : {{ details.gender }}</li>
+          <li>Date de naissance : {{ details.birthday }}</li>
+          <li>Lieu de naissance : {{ details.place_of_birth }}</li>
+          <li>Date de mort : {{ details.deathday}}</li>
+        </ul>
+
+
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+
+        Biographie : {{ details.biography | slice:0:500 }}...
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="3" [rowspan]="1">
+        Films : <br>
+        // TODO
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <ul>
+
+    </ul>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button cdkFocusInitial>Ok</button>
+  </div>
+
+</section>
