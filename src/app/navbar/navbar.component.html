@@ -10,16 +10,16 @@
 
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>TENDANCES</button>
-  <button mat-menu-item>RECENTS</button>
+  <button mat-menu-item routerLink="/movies/tendances" routerLinkActive="active" >TENDANCES</button>
+  <button mat-menu-item routerLink="/movies/recents"   routerLinkActive="active" >RECENTS</button>
   <button mat-menu-item [matMenuTriggerFor]="subMenu">GENRE</button>
 </mat-menu>
 
 <mat-menu #subMenu="matMenu">
-  <button mat-menu-item>ACTION</button>
-  <button mat-menu-item>COMEDIE</button>
-  <button mat-menu-item>AVENTURE</button>
-  <button mat-menu-item>ANIMATION</button>
+  <button mat-menu-item routerLink="/movies/genre/action"    routerLinkActive="active" >ACTION</button>
+  <button mat-menu-item routerLink="/movies/genre/comedie"   routerLinkActive="active" >COMEDIE</button>
+  <button mat-menu-item routerLink="/movies/genre/aventure"  routerLinkActive="active" >AVENTURE</button>
+  <button mat-menu-item routerLink="/movies/genre/animation" routerLinkActive="active" >ANIMATION</button>
 </mat-menu>
 
 
