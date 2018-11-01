@@ -1,18 +1,11 @@
 <h1>ZMOVIES</h1>
 
-<hr/>
-<nav *ngIf="user">
-  <label>{{user.displayName}}</label>
-  <img [src]="user.photoURL" />
-  <button (click)="logout()">Déconnection</button>
-  {{user.uid}}
-</nav>
-<nav *ngIf="!user">
-  <button (click)="login()">Connection via Google</button>
-</nav>
-<hr/>
+<app-navbar></app-navbar>
 
 <app-sidebar></app-sidebar>
+
+<router-outlet></router-outlet>
+
 <app-listmovie *ngFor = "let id of movieId" [movieId]="id"></app-listmovie>
 
 <!--<pre *ngIf="lists">-->

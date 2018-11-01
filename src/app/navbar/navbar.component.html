@@ -1,0 +1,39 @@
+
+<button mat-button routerLink="/home" routerLinkActive="active">Accueil</button>
+<button mat-button [matMenuTriggerFor]="menu">Film</button>
+<button mat-button routerLink="/actors" routerLinkActive="active">Acteurs</button>
+
+<!--if *ngIf="!user"-->
+<button mat-button *ngIf="!user" (click)="login()">Connection</button>
+<!--else -->
+<button mat-button *ngIf="user" routerLink="/profile" routerLinkActive="active">Profil</button>
+
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>TENDANCES</button>
+  <button mat-menu-item>RECENTS</button>
+  <button mat-menu-item [matMenuTriggerFor]="subMenu">GENRE</button>
+</mat-menu>
+
+<mat-menu #subMenu="matMenu">
+  <button mat-menu-item>ACTION</button>
+  <button mat-menu-item>COMEDIE</button>
+  <button mat-menu-item>AVENTURE</button>
+  <button mat-menu-item>ANIMATION</button>
+</mat-menu>
+
+
+
+<!--<nav *ngIf="user">
+  <label>{{user.displayName}}</label>
+  <img [src]="user.photoURL" />
+  <button (click)="logout()">Déconnection</button>
+  {{user.uid}}
+</nav>
+<nav *ngIf="!user">
+  <button routerLink="/home" routerLinkActive="active">Accueil</button>
+  <button routerLink="/actors" routerLinkActive="active">Acteurs</button>
+  <button routerLink="/movies" routerLinkActive="active">Film</button>
+
+  <button (click)="login()">Connection via Google</button>
+</nav>-->

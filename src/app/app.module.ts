@@ -27,6 +27,10 @@ import { ActorComponent, ActorDialogComponent } from './actor/actor.component';
 import { ListactorComponent } from './listactor/listactor.component';
 import { MovieComponent } from './movie/movie.component';
 import { ListmovieComponent } from './listmovie/listmovie.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MainPageComponent } from './main-page/main-page.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -40,9 +44,12 @@ import { ListmovieComponent } from './listmovie/listmovie.component';
     ListactorComponent,
     MovieComponent,
     ListmovieComponent,
+    MainPageComponent,
+    NavbarComponent,
   ],
   entryComponents: [ActorDialogComponent],
   imports: [
+    MatMenuModule,
     BrowserModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -57,6 +64,8 @@ import { ListmovieComponent } from './listmovie/listmovie.component';
     MatCardModule,
     MatDialogModule,
     MatGridListModule,
+    AppRoutingModule
+
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent],
