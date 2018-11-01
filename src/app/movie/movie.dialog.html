@@ -1,9 +1,9 @@
 <section *ngIf="details" class="mat-typography">
-  <h1 mat-dialog-title>test</h1>
+  <h1 mat-dialog-title> {{ details.title }} </h1>
   <div mat-dialog-content>
   </div>
   <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onNoClick()">Fermer</button>
     <button mat-button cdkFocusInitial>Ok</button>
   </div>
 

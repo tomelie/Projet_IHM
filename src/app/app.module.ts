@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { TmdbService } from './tmdb.service';
@@ -31,6 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatIconModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatDialogModule,
     MatGridListModule,
     AppRoutingModule,
+    FlexLayoutModule,
+    MatIconModule,
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent],
