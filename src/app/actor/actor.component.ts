@@ -43,8 +43,3 @@ export class ActorDialogComponent {
     this.dialogRef.close();
   }
 }
-
-export interface DialogData {
-  data: number;
-  id: number;
-}

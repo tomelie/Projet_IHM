@@ -1,3 +1,5 @@
-<p>
-  movie works!
-</p>
+<img mat-raised-button (click)="openDialog()" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}"
+  layout-fill>
+<mat-grid-tile-footer>
+  {{ movie.title }}
+</mat-grid-tile-footer>
