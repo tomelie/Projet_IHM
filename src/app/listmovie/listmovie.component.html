@@ -7,23 +7,3 @@
     </mat-grid-tile>
   </mat-grid-list>
 </section>
-
-<h1>Test avec des materials cards et flex</h1>
-
-<section class="mat-typography" *ngIf="movies" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left">
-  <mat-card class="card-movie" *ngFor="let movie of movies">
-    <mat-card-title>
-      {{movie.title}}
-    </mat-card-title>
-    <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}">
-    <mat-card-content>
-      <p>
-        The description of Washed...
-      </p>
-    </mat-card-content>
-    <mat-card-actions layout="row" layout-align="end center">
-      <button mat-button>Fiche</button>
-      <button mat-button cdkFocusInitial>Ajouter</button>
-    </mat-card-actions>
-  </mat-card>
-</section>

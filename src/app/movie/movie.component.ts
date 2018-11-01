@@ -44,8 +44,3 @@ export class MovieDialogComponent {
     this.dialogRef.close();
   }
 }
-
-export interface DialogData {
-  data: number;
-  id: number;
-}
