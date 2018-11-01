@@ -1,3 +1,7 @@
-<p>
-  {{data | json}}
-</p>
+<h1>Titre de la liste</h1>
+
+<mat-grid-list cols="4" rowHeight="1:1" *ngIf="movies">
+  <mat-grid-tile *ngFor="let movie of movies">
+    <app-movie [movie]="movie"></app-movie>
+  </mat-grid-tile>
+</mat-grid-list>
