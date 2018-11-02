@@ -18,8 +18,9 @@ export class MovieComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.MovieDialog.open(MovieDialogComponent, {
-      width: '250em',
+      width: '50%',
       data: this.movie,
+      autoFocus: false,
     });
   }
 }
