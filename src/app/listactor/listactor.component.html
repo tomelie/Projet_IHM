@@ -1,5 +1,5 @@
 <section class="mat-typography" *ngIf="actors">
-  <mat-grid-list cols="8" rowHeight="2:3">
+  <mat-grid-list cols="6" rowHeight="2:3">
     <mat-grid-tile *ngFor="let actor of actors" class="mat-typography" style="background-color: lightgray">
       <app-actor [actor]="actor"></app-actor>
     </mat-grid-tile>
