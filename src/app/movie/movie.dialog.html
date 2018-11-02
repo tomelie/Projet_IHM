@@ -6,6 +6,7 @@
       <div fxFlex="2"> </div>
       <div fxFlex="78">
         <h2 mat-dialog-title> {{ details.title }} </h2>
+        <p>Réalisateur : a venir</p>
         <p *ngIf="details.runtime">Durée : {{ details.runtime }}mn</p>
         <p *ngIf="details.genres"><span *ngFor="let genre of details.genres; let isLast=last; let isFirst=first">{{isFirst
             ? 'Genre: ' : ''}}{{ genre.name
@@ -13,6 +14,8 @@
         <p *ngIf="details.production_countries"><span *ngFor="let country of details.production_countries; let isLast=last; let isFirst=first">
             {{isFirst ? 'Pays: ' : ''}}{{ country.name
             }}{{isLast ? '' : ', '}}</span></p>
+        <p *ngIf="details.vote_average">{{ details.vote_average }} <mat-icon>star_rate</mat-icon>
+        </p>
 
       </div>
     </div>
