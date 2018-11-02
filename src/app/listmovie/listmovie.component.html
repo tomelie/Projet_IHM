@@ -1,9 +1,5 @@
-<section class="mat-typography" *ngIf="movies">
-  <h1>Titre de la liste</h1>
-
-  <mat-grid-list cols="8" rowHeight="2:3">
-    <mat-grid-tile *ngFor="let movie of movies">
-      <app-movie [movie]="movie"></app-movie>
-    </mat-grid-tile>
-  </mat-grid-list>
+<section fxLayout='row wrap' fxLayoutAlign="start" *ngIf="movies">
+  <mat-card *ngFor="let movie of movies" fxFlex="20%" fxFlex.lt-lg="50%" fxLayout="row wrap">
+    <app-movie [movie]="movie"></app-movie>
+  </mat-card>
 </section>

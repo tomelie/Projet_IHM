@@ -1,5 +1,21 @@
-<img mat-raised-button (click)="openDialog()" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}"
-  layout-fill>
-<mat-grid-tile-footer>
-  {{ movie.title }}
-</mat-grid-tile-footer>
+<img *ngIf="movie.poster_path" fxFlex="50" style="max-width: 100%;" mat-raised-button src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}"
+  alt="movie poster layout-fill">
+<div *ngIf="!movie.poster_path" fxFlex="50" fxLayout="row" fxLayoutAlign="space-around center" style="background-color: lightgray">
+  <mat-icon>photo</mat-icon>
+</div>
+
+
+<mat-card-content fxFlex="50" fxLayout="column">
+  <mat-card-header fxFlex="100">
+    <mat-card-title>{{ movie.title }}</mat-card-title>
+    <mat-card-subtitle>Réalisateur</mat-card-subtitle>
+  </mat-card-header>
+  <div fxFlex></div>
+  <mat-card-actions fxFlex="100">
+    <div fxFlex></div>
+    <button mat-button (click)="openDialog()" class="md-no-focus">Voir</button>
+    <button mat-button class="md-no-focus">
+      <mat-icon>playlist_add</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card-content>

@@ -1,10 +1,34 @@
 <section *ngIf="details" class="mat-typography">
-  <h1 mat-dialog-title> {{ details.title }} </h1>
-  <div mat-dialog-content>
+  <div mat-dialog-content fxLayout='column'>
+    <div fxLayout='row wrap' fxLayoutAlign="start" fxFlex="100">
+      <img *ngIf="movie.poster_path" fxFlex="20" style="max-width: 100%;" mat-raised-button src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{details.poster_path}}"
+        alt="movie poster layout-fill">
+      <div fxFlex="2"> </div>
+      <div fxFlex="78">
+        <h2 mat-dialog-title> {{ details.title }} </h2>
+        <p>Réalisateur : a venir</p>
+        <p *ngIf="details.runtime">Durée : {{ details.runtime }}mn</p>
+        <p *ngIf="details.genres"><span *ngFor="let genre of details.genres; let isLast=last; let isFirst=first">{{isFirst
+            ? 'Genre: ' : ''}}{{ genre.name
+            }}{{isLast ? '' : ', '}}</span></p>
+        <p *ngIf="details.production_countries"><span *ngFor="let country of details.production_countries; let isLast=last; let isFirst=first">
+            {{isFirst ? 'Pays: ' : ''}}{{ country.name
+            }}{{isLast ? '' : ', '}}</span></p>
+        <p *ngIf="details.vote_average">{{ details.vote_average }} <mat-icon>star_rate</mat-icon>
+        </p>
+
+      </div>
+    </div>
+    <div fxFlex="100">
+      <h3>Synopsis</h3>
+      {{ details.overview }}
+    </div>
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Fermer</button>
-    <button mat-button cdkFocusInitial>Ok</button>
+  <div mat-dialog-actions align="end">
+    <button mat-button>
+      <mat-icon>playlist_add</mat-icon> Favoris
+    </button>
+    <button mat-button mat-dialog-close>Fermer</button>
   </div>
 
 </section>

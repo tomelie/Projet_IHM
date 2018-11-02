@@ -1,43 +1,36 @@
 <section *ngIf="details" class="mat-typography">
-  <h1 mat-dialog-title>{{ details.name }}</h1>
-  <div mat-dialog-content>
-    <mat-grid-list cols="3" rowHeight="10em">
-      <mat-grid-tile [colspan]="1" [rowspan]="3">
-        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{details.profile_path}}" layout-fill>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <p>{{ details.also_known_as }}</p>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <h2>Popularité : {{ details.popularity }}</h2>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="2">
-        <ul>
-          <li>Sexe : {{ details.gender }}</li>
-          <li>Date de naissance : {{ details.birthday }}</li>
-          <li>Lieu de naissance : {{ details.place_of_birth }}</li>
-          <li>Date de mort : {{ details.deathday}}</li>
-        </ul>
+  <div mat-dialog-content fxLayout='column'>
+    <div fxLayout='row wrap' fxLayoutApgn="start" fxFlex="100">
+      <img *ngIf="details.profile_path" fxFlex="20" style="max-width: 100%;" mat-raised-button src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{details.profile_path}}"
+        alt="movie poster layout-fill">
+      <div fxFlex="2"> </div>
+      <div fxFlex="78">
+        <h2 mat-dialog-title> {{ details.name }} </h2>
+        <h3 *ngIf="details.popularity">Popularité : {{ details.popularity }}</h3>
+        <p *ngIf="details.also_known_as"><span *ngFor="let name of details.also_known_as; let isLast=last; let isFirst=first">{{isFirst
+            ? 'Surnoms: ' : ''}}{{ name
+            }}{{isLast ? '' : ', '}}</span></p>
 
-
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="2" [rowspan]="1">
-
+        <p>Sexe :
+          <span *ngIf="details.gender==2">Homme</span>
+          <span *ngIf="details.gender==1">Femme</span>
+          <span *ngIf="details.gender==0">Fhomme</span>
+        </p>
+        <p>Date de naissance : {{ details.birthday }}</p>
+        <p>peu de naissance : {{ details.place_of_birth }}</p>
+        <p *ngIf="details.deathday">Date de mort : {{ details.deathday}}</p>
+        <p *ngIf="!details.deathday">Date de mort : vivant</p>
+        <h3>Bio</h3>
         Biographie : {{ details.biography | slice:0:500 }}...
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="3" [rowspan]="1">
-        Films : <br>
-        // TODO
-      </mat-grid-tile>
-    </mat-grid-list>
-
-    <ul>
-
-    </ul>
+      </div>
+    </div>
+    <div fxFlex="100">
+      <hr>
+      <h3>Films</h3>
+    </div>
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button cdkFocusInitial>Ok</button>
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Fermer</button>
   </div>
 
 </section>
