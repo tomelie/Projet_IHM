@@ -9,7 +9,8 @@ import { ProfileComponent }   from './profile/profile.component';
 const routes: Routes = [
   { path: 'home', component: MainPageComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'movies', component: ListmovieComponent },
+  { path: 'movies/:type', component: ListmovieComponent },
+  { path: 'movies/genre/:type', component: ListmovieComponent },
   { path: 'actors', component: ListactorComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
