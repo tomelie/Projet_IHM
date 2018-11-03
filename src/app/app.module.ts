@@ -19,6 +19,7 @@ import {
   MatCardModule,
   MatDialogModule,
   MatGridListModule,
+  MatToolbarModule,
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -71,6 +72,7 @@ import { MatIconModule } from '@angular/material';
     AppRoutingModule,
     FlexLayoutModule,
     MatIconModule,
+    MatToolbarModule,
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent],
