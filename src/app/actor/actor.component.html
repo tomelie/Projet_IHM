@@ -1,5 +1,8 @@
-<img mat-raised-button (click)="openDialog()" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{actor.profile_path}}"
+<img *ngIf="actor.profile_path" mat-raised-button (click)="openDialog()" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{actor.profile_path}}"
   layout-fill>
-<mat-grid-tile-footer>
+<div *ngIf="!actor.profile_path" mat-raised-button (click)="openDialog()" fxFlex="100" fxLayout="row" fxLayoutAlign="space-around center">
+  <mat-icon>photo</mat-icon>
+</div>
+<mat-grid-tile-footer mat-raised-button (click)="openDialog()">
   {{ actor.name }}
 </mat-grid-tile-footer>

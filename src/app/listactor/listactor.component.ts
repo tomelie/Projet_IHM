@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MovieResponse } from '../tmdb-data/Movie';
 import { TmdbService } from '../tmdb.service';
+import { PersonResponse } from '../tmdb-data/Person';
 
 @Component({
   selector: 'app-listactor',
@@ -8,10 +8,8 @@ import { TmdbService } from '../tmdb.service';
   styleUrls: ['./listactor.component.css'],
 })
 export class ListactorComponent implements OnInit {
-  data: MovieResponse;
-
   @Input()
-  actors: JSON;
+  actors: PersonResponse[];
 
   constructor(private tmdb: TmdbService) {}
 

@@ -1,7 +1,7 @@
-<h1>Titre de la liste</h1>
-
-<mat-grid-list cols="4" rowHeight="1:1" *ngIf="actors">
-  <mat-grid-tile *ngFor="let actor of actors">
-    <app-actor [actor]="actor"></app-actor>
-  </mat-grid-tile>
-</mat-grid-list>
+<section class="mat-typography" *ngIf="actors">
+  <mat-grid-list cols="8" rowHeight="2:3">
+    <mat-grid-tile *ngFor="let actor of actors" class="mat-typography" style="background-color: #eee">
+      <app-actor [actor]="actor"></app-actor>
+    </mat-grid-tile>
+  </mat-grid-list>
+</section>
