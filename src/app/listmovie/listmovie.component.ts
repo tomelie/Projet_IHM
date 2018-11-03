@@ -14,7 +14,7 @@ export class ListmovieComponent implements OnInit {
   @Input()
   movies: MovieResponse[];
 
-
+  /**
   data: MovieResponse;
 
   @Input() movieId: number;
@@ -33,6 +33,7 @@ export class ListmovieComponent implements OnInit {
 
     //this.tmdb.getMovie(this.movieId).then(data => this.data = data);
   }
+  */
 
   constructor(private tmdb: TmdbService) {}
 
