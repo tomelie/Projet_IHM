@@ -1,0 +1,10 @@
+<section *ngIf="data">
+  <app-listmovie [movies]="data.results">
+  </app-listmovie>
+</section>
+
+<section *ngIf="currentSearchResMovie">
+  <app-listmovie [movies]="currentSearchResMovie.results">
+  </app-listmovie>
+</section>
+

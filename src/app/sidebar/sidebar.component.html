@@ -1,18 +1,47 @@
+<h1>Rechereche Film</h1>
 <form (submit)="sdSearchMovie(searchInputMovie.value)">
   <mat-form-field class="input-general">
     <input matInput placeholder="Rechercher un Film" #searchInputMovie>
   </mat-form-field>
 </form>
+Genre :
+<!--
+<mat-form-field>
+  <mat-select placeholder="choix genre">
+    <mat-option *ngFor="let genre of genres" [value]="genre.value">
+      {{genre.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+-->
+<mat-form-field>
+  <select matNativeControl required>
+    <option value="aucun">Aucun</option>
+    <option value="action">Action</option>
+    <option value="comedie">Comedie</option>
+    <option value="aventure">Aventure</option>
+    <option value="animation">Animation</option>
+  </select>
+</mat-form-field>
 
+
+<section class="example-section">
+      <mat-checkbox class="example-margin" [(ngModel)]="checked">EN TENDANCE</mat-checkbox><br>
+      <mat-checkbox class="example-margin" [(ngModel)]="indeterminate">RECENT</mat-checkbox>
+</section>
+
+<h1>Par Acteur</h1>
 <form (submit)="sdSearchActor(searchInputActor.value)">
   <mat-form-field class="input-general">
     <input matInput placeholder="Rechercher un Acteur" #searchInputActor>
   </mat-form-field>
 </form>
+
 <section *ngIf="currentSearchResActor">
   <app-listactor [actors]="currentSearchResActor.results">
   </app-listactor>
 </section>
+
 <section *ngIf="currentSearchResMovie">
   <app-listmovie [movies]="currentSearchResMovie.results">
   </app-listmovie>

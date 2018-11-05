@@ -1,25 +1,4 @@
-<button mat-button routerLink="/home" routerLinkActive="active">Accueil</button>
-<button mat-button [matMenuTriggerFor]="menu">Film</button>
-<button mat-button routerLink="/actors" routerLinkActive="active">Acteurs</button>
 
-<!--if *ngIf="!user"-->
-<button mat-button *ngIf="!user" (click)="login()">Connection</button>
-<!--else -->
-<button mat-button *ngIf="user" routerLink="/profile" routerLinkActive="active">Profil</button>
-
-
-<mat-menu #menu="matMenu">
-  <button mat-menu-item routerLink="/movies/tendances" routerLinkActive="active" >TENDANCES</button>
-  <button mat-menu-item routerLink="/movies/recents"   routerLinkActive="active" >RECENTS</button>
-  <button mat-menu-item [matMenuTriggerFor]="subMenu">GENRE</button>
-</mat-menu>
-
-<mat-menu #subMenu="matMenu">
-  <button mat-menu-item routerLink="/movies/genre/action"    routerLinkActive="active" >ACTION</button>
-  <button mat-menu-item routerLink="/movies/genre/comedie"   routerLinkActive="active" >COMEDIE</button>
-  <button mat-menu-item routerLink="/movies/genre/aventure"  routerLinkActive="active" >AVENTURE</button>
-  <button mat-menu-item routerLink="/movies/genre/animation" routerLinkActive="active" >ANIMATION</button>
-</mat-menu>
 
 
 

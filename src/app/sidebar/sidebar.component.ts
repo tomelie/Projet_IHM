@@ -3,11 +3,15 @@ import {SearchMovieResponse} from '../tmdb-data/searchMovie';
 import {TmdbService} from '../tmdb.service';
 import {SearchPeopleResponse} from '../tmdb-data/SearchPeople';
 
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
+
+
+
 export class SidebarComponent implements OnInit {
 
   currentSearchResMovie: SearchMovieResponse;

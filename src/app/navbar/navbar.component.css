@@ -1,0 +1,17 @@
+.logo
+{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width:250px;
+}
+
+.header_navbar
+{
+	background-color: red;
+}
+
+.navbar
+{
+	background-color: grey;
+}
