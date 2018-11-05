@@ -1,0 +1,36 @@
+<section *ngIf="details" class="mat-typography">
+  <div mat-dialog-content fxLayout='column'>
+    <div fxLayout='row wrap' fxLayoutApgn="start" fxFlex="100">
+      <img *ngIf="details.profile_path" fxFlex="20" style="max-width: 100%;" mat-raised-button src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{details.profile_path}}"
+        alt="movie poster layout-fill">
+      <div fxFlex="2"> </div>
+      <div fxFlex="78">
+        <h2 mat-dialog-title> {{ details.name }} </h2>
+        <h3 *ngIf="details.popularity">Popularité : {{ details.popularity }}</h3>
+        <p *ngIf="details.also_known_as"><span *ngFor="let name of details.also_known_as; let isLast=last; let isFirst=first">{{isFirst
+            ? 'Surnoms: ' : ''}}{{ name
+            }}{{isLast ? '' : ', '}}</span></p>
+
+        <p>Sexe :
+          <span *ngIf="details.gender==2">Homme</span>
+          <span *ngIf="details.gender==1">Femme</span>
+          <span *ngIf="details.gender==0">Fhomme</span>
+        </p>
+        <p>Date de naissance : {{ details.birthday }}</p>
+        <p>peu de naissance : {{ details.place_of_birth }}</p>
+        <p *ngIf="details.deathday">Date de mort : {{ details.deathday}}</p>
+        <p *ngIf="!details.deathday">Date de mort : vivant</p>
+        <h3>Bio</h3>
+        Biographie : {{ details.biography | slice:0:500 }}...
+      </div>
+    </div>
+    <div fxFlex="100">
+      <hr>
+      <h3>Films</h3>
+    </div>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Fermer</button>
+  </div>
+
+</section>

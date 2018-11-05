@@ -1,0 +1,7 @@
+<section fxLayout='row wrap' fxLayoutAlign="start" *ngIf="movies">
+  <mat-card *ngFor="let movie of movies" fxFlex="20%" fxFlex.lt-lg="50%" fxLayout="row wrap">
+    <app-movie [movie]="movie"></app-movie>
+  </mat-card>
+</section>
+
+

@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import {MovieQuery, MovieResponse} from './tmdb-data/Movie';
-import {HttpClient, HttpResponse} from '@angular/common/http';
-import {PersonQuery, PersonResponse} from './tmdb-data/Person';
-import {SearchMovieQuery, SearchMovieResponse} from './tmdb-data/searchMovie';
-import {SearchPeopleQuery, SearchPeopleResponse} from './tmdb-data/SearchPeople';
-import {TVQuery, TVResponse} from './tmdb-data/TV';
-import {SearchTVQuery, SearchTVResponse} from './tmdb-data/SearchTV';
+import { MovieGenre, MovieQuery, MovieResponse } from './tmdb-data/Movie';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { PersonQuery, PersonResponse } from './tmdb-data/Person';
+import { SearchMovieQuery, SearchMovieResponse } from './tmdb-data/searchMovie';
+import { SearchPeopleQuery, SearchPeopleResponse } from './tmdb-data/SearchPeople';
+import { TVQuery, TVResponse } from './tmdb-data/TV';
+import { SearchTVQuery, SearchTVResponse } from './tmdb-data/SearchTV';
 
 const tmdbApi = 'https://api.themoviedb.org/3';
 type HTTP_METHOD = 'GET' | 'POST' | 'DELETE' | 'PUT';
 
-function AlxToObjectString(data: Object): {[key: string]: string} {
+function AlxToObjectString(data: Object): { [key: string]: string } {
   const res = {};
   for (const k in data) {
     const v = data[k];
@@ -20,19 +20,21 @@ function AlxToObjectString(data: Object): {[key: string]: string} {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TmdbService {
   private api_key: string;
 
   private async get<T>(url: string, data: Object): Promise<HttpResponse<T>> {
-    return this._http.get<T>( url, {
-      observe: 'response',
-      params: {...AlxToObjectString(data), api_key: this.api_key}
-    }).toPromise();
+    return this._http
+      .get<T>(url, {
+        observe: 'response',
+        params: { ...AlxToObjectString(data), api_key: this.api_key },
+      })
+      .toPromise();
   }
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
   init(key: string): this {
     this.api_key = key;
@@ -48,7 +50,7 @@ export class TmdbService {
     return res.body;
   }
 
-  async searchMovie(query: SearchMovieQuery): Promise<SearchMovieResponse> {
+  async searchMovie(query: { query: string }): Promise<SearchMovieResponse> {
     const url = `${tmdbApi}/search/movie`;
     const res = await this.get<SearchMovieResponse>(url, query);
     return res.body;
@@ -84,4 +86,30 @@ export class TmdbService {
     return res.body;
   }
 
+  // _______________________________________________________________________________________________________________________________________
+  // Popular Movie ____________________________________________________________________________________________________________________________________
+  // _______________________________________________________________________________________________________________________________________
+  async getPopularMovie(options?: MovieQuery): Promise<MovieResponse> {
+    const url = `${tmdbApi}/movie/popular`;
+    const res = await this.get<MovieResponse>(url, options);
+    return res.body;
+  }
+
+  // _______________________________________________________________________________________________________________________________________
+  // Latest Movie ____________________________________________________________________________________________________________________________________
+  // _______________________________________________________________________________________________________________________________________
+  async getLatestMovie(options?: MovieQuery): Promise<MovieResponse> {
+    const url = `${tmdbApi}/movie/latest`;
+    const res = await this.get<MovieResponse>(url, options);
+    return res.body;
+  }
+
+  // _______________________________________________________________________________________________________________________________________
+  // Genre Movie ____________________________________________________________________________________________________________________________________
+  // _______________________________________________________________________________________________________________________________________
+  async getListGenreMovie(options?: MovieQuery): Promise<MovieGenre> {
+    const url = `${tmdbApi}/genre/movie/list`;
+    const res = await this.get<MovieGenre>(url, options);
+    return res.body;
+  }
 }

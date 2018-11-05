@@ -13,14 +13,5 @@
 
 .navbar
 {
-	color : white;
-	background-color: black;
-
-}
-
-.sidebar
-{
-	color : white;
-	background-color: red;
-	min-height: 100vh;
+	background-color: grey;
 }

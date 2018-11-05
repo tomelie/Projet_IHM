@@ -18,6 +18,7 @@ export class AppComponent {
   private dbData: Observable<any>;
 
   constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
+    tmdb.init('25ea93320b0ede2eb2ce7b2661886a0e');
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
       this._user = u;
       const listsPath = `lists/${u.uid}`;
@@ -25,12 +26,12 @@ export class AppComponent {
       lists.push('coucou');
       this.dbData = lists.valueChanges();
     });
-    setTimeout( () =>
-      tmdb.init('XXX') // Clef de TMDB
-          .getMovie(13)
-          .then( (m: MovieResponse) => console.log('Movie 13:', this._movie = m) )
-          .catch( err => console.error('Error getting movie:', err) ),
-      1000 );
+    // setTimeout( () =>
+    //   tmdb.init('fa7257552d5c28ea58a4b8867f6326e8') // Clef de TMDB
+    //       .getMovie(13)
+    //       .then( (m: MovieResponse) => console.log('Movie 13:', this._movie = m) )
+    //       .catch( err => console.error('Error getting listmovie:', err) ),
+    //   1000 );
 
   }
 
