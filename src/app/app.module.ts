@@ -34,8 +34,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
+import { NavComponent } from './nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import {MatSelectModule} from '@angular/material/select';
     MovieDialogComponent,
     MainPageComponent,
     NavbarComponent,
-    ListmovieCons
+    ListmovieCons,
+    NavComponent
   ],
   entryComponents: [ActorDialogComponent, MovieDialogComponent],
   imports: [
@@ -75,7 +78,10 @@ import {MatSelectModule} from '@angular/material/select';
     FlexLayoutModule,
     MatIconModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent],
