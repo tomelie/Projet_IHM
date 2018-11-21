@@ -10,7 +10,7 @@
     <app-sidebar></app-sidebar>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar>
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -20,7 +20,11 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>tmdb-m1</span>
+      <div class="button-row">
+        <button mat-stroked-button>Tendences</button> <button mat-stroked-button>Action</button>
+        <button mat-stroked-button>Comédie</button> <button mat-stroked-button>Policier</button>
+        <button mat-stroked-button>Horeur</button>
+      </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
