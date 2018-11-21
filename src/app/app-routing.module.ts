@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'home', component: MainPageComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'movies/:type', component: ListmovieCons },
-  { path: 'movies/:type', component: ListmovieCons },
   { path: 'movies/research/:search', component: ListmovieCons },
   { path: 'actors', component: ListactorComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
