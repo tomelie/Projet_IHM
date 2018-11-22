@@ -33,7 +33,6 @@ import { ListmovieComponent, ListmovieCons} from './listmovie/listmovie.componen
 import { AppRoutingModule } from './app-routing.module';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { NavbarComponent } from './navbar/navbar.component';
 import { MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import { NavComponent } from './nav/nav.component';
@@ -53,7 +52,6 @@ import { LayoutModule } from '@angular/cdk/layout';
     ListmovieComponent,
     MovieDialogComponent,
     MainPageComponent,
-    NavbarComponent,
     ListmovieCons,
     NavComponent
   ],
