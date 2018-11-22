@@ -37,6 +37,7 @@ import { MatIconModule, MatSidenavModule, MatListModule } from '@angular/materia
 import {MatSelectModule} from '@angular/material/select';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MovieDialogComponent,
     MainPageComponent,
     ListmovieCons,
-    NavComponent
+    NavComponent,
+    PlaylistComponent
   ],
   entryComponents: [ActorDialogComponent, MovieDialogComponent],
   imports: [
