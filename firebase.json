@@ -1,0 +1,12 @@
+{
+  "hosting": {
+    "public": "dist/tmdb-m1",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/tmdb-m1/index.html"
+      }
+    ]
+  }
+}
