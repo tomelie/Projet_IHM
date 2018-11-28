@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {SearchMovieResponse} from '../tmdb-data/searchMovie';
 import {TmdbService} from '../tmdb.service';
 import {SearchPeopleResponse} from '../tmdb-data/SearchPeople';
-
+import {AngularFireAuth} from '@angular/fire/auth';
+import {User} from 'firebase';
+import {filter} from 'rxjs/operators';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,16 +14,27 @@ import {SearchPeopleResponse} from '../tmdb-data/SearchPeople';
 })
 
 
-
 export class SidebarComponent implements OnInit {
 
   currentSearchResMovie: SearchMovieResponse;
   currentSearchResActor: SearchPeopleResponse;
-  constructor(private tmdb: TmdbService) { }
+  items: any;
+  private log: AppComponent;
+  private Auser: User;
+  constructor(private tmdb: TmdbService, private appCom:AppComponent) {
+    this.log = appCom;
+  }
 
   ngOnInit() {
   }
 
+  login(){
+    this.log.login();
+  }
+
+  logout(){
+    this.log.logout();
+  }
   sdSearchMovie(txt: string) {
     if (!txt) {
       return;
