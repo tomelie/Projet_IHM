@@ -38,14 +38,16 @@ export class AppComponent {
       //playlist
       this.playlist = db.list(this.listsPathPlaylist);
       this.playlist.snapshotChanges().subscribe( data => {
-        data.forEach(value => {
+        data.forEach(value => { 
           const alist: Liste = {
+            key: value.key,
             nom: value.payload.val().nom,
             films: value.payload.val().films
           };
           this.myLists.push(alist);
         });
       });
+      console.log(this.myLists);
       //playlist
     });
     // setTimeout( () =>
@@ -59,15 +61,24 @@ export class AppComponent {
 
   //playlist
 
-  public addPlaylist(name: string){
-    let samename = false;
-    this.myLists.forEach(function(nom){
-      console.log(name);
-      if(name == name){
-        samename = true;
+  private samelist(name: string): Liste{
+    let alist =null;
+    this.myLists.forEach(function(list){
+      if(list.nom === name){
+       alist = list;
       }
     });
-    if(!samename){
+    
+    if(alist === null){
+      return null;
+    }else{
+      return alist;
+    }
+    
+  }
+
+  public addPlaylist(name: string){
+    if(this.samelist(name) === null){
       const alist: Liste = {
         nom: name,
         films: []
@@ -76,9 +87,14 @@ export class AppComponent {
     }
   }
 
-  get showPlaylist(): Liste[]{
-    return this.myLists;
+  public removePlayList(name: string){
+    let mylist = this.samelist(name);
+    if(mylist !== null){
+      console.log('remove ' + name);
+      this.playlist.remove(mylist.key);
+    }
   }
+
   //playlist
 
   get movie(): MovieResponse {
