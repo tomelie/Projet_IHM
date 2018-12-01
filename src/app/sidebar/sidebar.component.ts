@@ -46,9 +46,8 @@ export class SidebarComponent implements OnInit {
   addListe(){
     let newNameList = this.name.value;
     if( newNameList !== ""){
-          this.appCom.addPlaylist(newNameList);
+      this.appCom.addPlaylist(newNameList);
     }
-
   }
 
   sdSearchMovie(txt: string) {
