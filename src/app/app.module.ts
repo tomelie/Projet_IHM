@@ -38,6 +38,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { PlaylistComponent } from './playlist/playlist.component';
   entryComponents: [ActorDialogComponent, MovieDialogComponent],
   imports: [
     MatMenuModule,
+    ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),

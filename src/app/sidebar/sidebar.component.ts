@@ -5,6 +5,7 @@ import {SearchPeopleResponse} from '../tmdb-data/SearchPeople';
 import { AppComponent } from '../app.component';
 import {Observable} from 'rxjs';
 import { User } from 'firebase';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,15 +13,17 @@ import { User } from 'firebase';
   styleUrls: ['./sidebar.component.css']
 })
 
-
 export class SidebarComponent implements OnInit {
   currentSearchResMovie: SearchMovieResponse;
   currentSearchResActor: SearchPeopleResponse;
   private appCom: AppComponent;
+
+  private name = new FormControl('') ;
   constructor(private tmdb: TmdbService, private appC:AppComponent) {
     this.appCom = appC;
   }
-
+  
+ 
   ngOnInit() {
   }
 
@@ -38,6 +41,14 @@ export class SidebarComponent implements OnInit {
 
   get listes(): Observable<any>{
     return this.appCom.lists;
+  }
+  
+  addListe(){
+    let newNameList = this.name.value;
+    if( newNameList !== ""){
+          this.appCom.addPlaylist(newNameList);
+    }
+
   }
 
   sdSearchMovie(txt: string) {

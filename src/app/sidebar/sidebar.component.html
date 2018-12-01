@@ -5,9 +5,14 @@
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
 </form>
-<mat-toolbar>
-  <button mat-flat-button color="primary">Ajouter Liste <mat-icon>add</mat-icon></button>
-</mat-toolbar>
+<form>
+  <mat-toolbar>
+    <input type="text" [formControl]="name">
+  </mat-toolbar>
+  <mat-toolbar>
+    <button mat-flat-button color="primary" (click)="addListe()">Ajouter Liste <mat-icon>add</mat-icon></button>
+  </mat-toolbar>
+</form>
 <mat-toolbar>
   <button mat-flat-button color="primary" *ngIf="user" (click)="logout()">Déconnection<mat-icon>person</mat-icon></button>
   <button mat-flat-button color="primary" *ngIf="!user" (click)="login()">Connexion <mat-icon>person</mat-icon></button>
@@ -15,8 +20,8 @@
 
 <mat-nav-list *ngIf="user">
     <a *ngFor="let liste of listes | async" mat-list-item 
-    [routerLink]="['/playlist',liste]" routerLinkActive="active" >
+    [routerLink]="['/playlist',liste.nom]" routerLinkActive="active" >
      <mat-icon>list</mat-icon>
-     {{ liste }} 
+     {{ liste.nom }} 
     </a>
 </mat-nav-list>
