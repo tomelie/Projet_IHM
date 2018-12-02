@@ -5,11 +5,8 @@
   </mat-form-field>
 </form>
 <form>
-  <mat-toolbar>
-    <input type="text" [formControl]="name">
-  </mat-toolbar>
-  <mat-toolbar>
-    <button mat-flat-button color="primary" (click)="addListe()">Ajouter Liste <mat-icon>add</mat-icon></button>
+  <mat-toolbar *ngIf="user">
+    <button mat-flat-button color="primary" (click)="openDialog()">Ajouter Liste <mat-icon>add</mat-icon></button>
   </mat-toolbar>
 </form>
 <mat-toolbar>

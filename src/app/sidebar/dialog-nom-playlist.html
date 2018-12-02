@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Créer une nouvelle playlist</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="nom playlist" [(ngModel)]="data.name" [formControl]="aFormControl"
+    [errorStateMatcher]="matcher" cdkFocusInitial> 
+    <mat-error *ngIf="aFormControl.hasError('pattern') && !aFormControl.hasError('required')">
+      nom de playlist existant déjà
+    </mat-error>
+    <mat-error *ngIf="aFormControl.hasError('required')">
+      <strong>Remplir</strong> le champ
+    </mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button mat-button [disabled]="aFormControl.hasError('pattern') || aFormControl.hasError('required')" [mat-dialog-close]="data.name" >Valider</button>
+</div>

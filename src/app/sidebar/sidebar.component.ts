@@ -1,11 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {SearchMovieResponse} from '../tmdb-data/searchMovie';
 import {TmdbService} from '../tmdb.service';
 import {SearchPeopleResponse} from '../tmdb-data/SearchPeople';
 import { AppComponent } from '../app.component';
 import {Observable} from 'rxjs';
 import { User } from 'firebase';
-import { FormControl } from '@angular/forms';
+import { Liste } from '../tmdb-data/List';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+
+export interface DialogData {
+  lists: string;
+}
 
 @Component({
   selector: 'app-sidebar',
@@ -17,18 +24,40 @@ export class SidebarComponent implements OnInit {
   currentSearchResMovie: SearchMovieResponse;
   currentSearchResActor: SearchPeopleResponse;
   private appCom: AppComponent;
+  private regexlist: string;
 
-  private name = new FormControl('') ;
-  constructor(private tmdb: TmdbService, private appC:AppComponent) {
+  constructor(private tmdb: TmdbService,public dialog: MatDialog, private appC:AppComponent) {
     this.appCom = appC;
   }
-  
- 
-  ngOnInit() {
+  openDialog(): void {
+    this.buildregex();
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {lists:this.regexlist}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("resultat :" + result)
+      if(result !== undefined){
+        this.addListe(result +"");
+      }
+    });
   }
+ 
+  ngOnInit() {}
 
   login(){
     this.appCom.login();
+  }
+
+  buildregex(){
+    let regexString = "";
+    this.appCom.listname.forEach(function(ele){
+      regexString += ele.nom+'|';
+    });
+    regexString = regexString.substring(0,regexString.length-1);
+    console.log(regexString);
+    this.regexlist = regexString;
   }
 
   logout(){
@@ -43,11 +72,8 @@ export class SidebarComponent implements OnInit {
     return this.appCom.lists;
   }
   
-  addListe(){
-    let newNameList = this.name.value;
-    if( newNameList !== ""){
-      this.appCom.addPlaylist(newNameList);
-    }
+  private addListe(nomplailyst:string){  
+    this.appCom.addPlaylist(nomplailyst);
   }
 
   sdSearchMovie(txt: string) {
@@ -76,6 +102,36 @@ export class SidebarComponent implements OnInit {
 
   gotoActor(id: number) {
     this.tmdb.getPerson(id);
+  }
+
+}
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+} 
+
+@Component({
+  selector: 'app-dialog-nom-playlist',
+  templateUrl: 'dialog-nom-playlist.html',
+})
+export class DialogOverviewExampleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+      
+    }
+  
+  aFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern("(?!("+this.data.lists+"))([0-9A-Za-z-])*"),
+  ]);
+  matcher = new MyErrorStateMatcher();
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

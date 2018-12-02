@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TmdbService } from '../tmdb.service';
 import { MovieResponse } from '../tmdb-data/Movie';
+import { AppComponent } from '../app.component';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-movie',
@@ -11,8 +13,10 @@ import { MovieResponse } from '../tmdb-data/Movie';
 export class MovieComponent implements OnInit {
   @Input()
   movie: MovieResponse;
-
-  constructor(public MovieDialog: MatDialog) {}
+  private appCom: AppComponent;
+  constructor(public MovieDialog: MatDialog,private appC:AppComponent) {
+    this.appCom = appC;
+  }
 
   ngOnInit() {}
 
@@ -22,6 +26,14 @@ export class MovieComponent implements OnInit {
       data: this.movie,
       autoFocus: false,
     });
+  }
+
+  get listes(): Observable<any>{
+    return this.appCom.lists;
+  }
+
+  addmovie(nom: string){
+    this.appCom.addmovieInplayliste(nom,this.movie.id+"");
   }
 }
 
@@ -44,4 +56,5 @@ export class MovieDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
 }
