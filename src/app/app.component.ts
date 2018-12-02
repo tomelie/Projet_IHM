@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 import {AngularFireDatabase,AngularFireList} from '@angular/fire/database';
 import {filter} from 'rxjs/operators';
 import { Liste } from './tmdb-data/List';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent {
   private _user: User;
   private dbData: Observable<any>;
   private dataB:AngularFireDatabase
+  private router: Router;
 
   //playlist
   private listsPathPlaylist:string;
@@ -26,7 +28,8 @@ export class AppComponent {
   private myLists: Liste[];
   //playlist
 
-  constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase) {
+  constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase,private myRouter: Router) {
+    this.router = myRouter;
     this.myLists = [];
     tmdb.init('25ea93320b0ede2eb2ce7b2661886a0e');
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
@@ -47,7 +50,6 @@ export class AppComponent {
           this.myLists.push(alist);
         });
       });
-      console.log(this.myLists);
       //playlist
     });
     // setTimeout( () =>
@@ -60,6 +62,9 @@ export class AppComponent {
   }
 
   //playlist
+  get listname(){
+    return this.myLists;
+  }
 
   private samelist(name: string): Liste{
     let alist =null;
@@ -82,7 +87,7 @@ export class AppComponent {
       const alist: Liste = {
         nom: name,
         films: []
-      }
+      };
       this.playlist.push(alist);
     }
   }
@@ -92,6 +97,21 @@ export class AppComponent {
     if(mylist !== null){
       console.log('remove ' + name);
       this.playlist.remove(mylist.key);
+      this.router.navigate(['/home']);
+    }
+  }
+
+  public addmovieInplayliste(name: string,idFilm: string){
+    let mylist = this.samelist(name);
+    if(mylist !== null){
+      if( mylist.films !== undefined){
+        mylist.films.push(idFilm);
+      }else{
+        mylist.films = [idFilm];
+      }
+      console.log("ajouter le file "+mylist+" dans la list " +mylist.nom);
+      this.playlist.update(mylist.key,mylist);
+      this.myLists = [];
     }
   }
 
@@ -112,6 +132,8 @@ export class AppComponent {
   logout() {
     this.anAuth.auth.signOut();
     this._user = undefined;
+    this.router.navigate(['/home']);
+    this.myLists = [];
   }
 
   get user(): User {

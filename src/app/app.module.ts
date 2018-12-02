@@ -22,7 +22,7 @@ import {
   MatToolbarModule,
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent, DialogOverviewExampleDialog } from './sidebar/sidebar.component';
 import { UserComponent } from './user/user.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OverlayconnexionComponent } from './overlayconnexion/overlayconnexion.component';
@@ -40,7 +40,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,12 +53,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     MovieComponent,
     ListmovieComponent,
     MovieDialogComponent,
+    DialogOverviewExampleDialog,
     MainPageComponent,
     ListmovieCons,
     NavComponent,
     PlaylistComponent
   ],
-  entryComponents: [ActorDialogComponent, MovieDialogComponent],
+  entryComponents: [ActorDialogComponent, MovieDialogComponent,DialogOverviewExampleDialog],
   imports: [
     MatMenuModule,
     ReactiveFormsModule,
