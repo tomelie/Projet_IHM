@@ -52,7 +52,7 @@ export class SidebarComponent implements OnInit {
 
   buildregex(){
     let regexString = "";
-    this.appCom.listname.forEach(function(ele){
+    this.appCom.listname.forEach(ele => {
       regexString += ele.nom+'|';
     });
     regexString = regexString.substring(0,regexString.length-1);

@@ -68,7 +68,7 @@ export class AppComponent {
 
   private samelist(name: string): Liste{
     let alist =null;
-    this.myLists.forEach(function(list){
+    this.myLists.forEach(list =>{
       if(list.nom === name){
        alist = list;
       }

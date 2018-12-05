@@ -5,6 +5,13 @@ import { MovieResponse } from '../tmdb-data/Movie';
 import { AppComponent } from '../app.component';
 import {Observable} from 'rxjs';
 
+
+export interface DialogData {
+  movie: MovieResponse;
+  listes: Observable<any>;
+  movieComponent: MovieComponent;
+}
+
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
@@ -23,7 +30,7 @@ export class MovieComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.MovieDialog.open(MovieDialogComponent, {
       width: '50%',
-      data: this.movie,
+      data: {movie:this.movie, listes:this.listes, movieComponent:this} ,
       autoFocus: false,
     });
   }
@@ -32,8 +39,12 @@ export class MovieComponent implements OnInit {
     return this.appCom.lists;
   }
 
-  addmovie(nom: string){
-    this.appCom.addmovieInplayliste(nom,this.movie.id+"");
+  private addmovie(nom: string){
+    this.addMovieInList(nom,this.movie.id + "");
+  }
+
+  public addMovieInList(nom: string,idmovie: string){
+    this.appCom.addmovieInplayliste(nom,idmovie);
   }
 }
 
@@ -43,14 +54,17 @@ export class MovieComponent implements OnInit {
 })
 export class MovieDialogComponent {
   details: MovieResponse;
-
   constructor(
     public tmdb: TmdbService,
     public dialogRef: MatDialogRef<MovieDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public movie: MovieResponse
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
-    tmdb.getMovie(movie.id).then(res => (this.details = res));
+    console.log(this);
+    tmdb.getMovie(data.movie.id).then(res => (this.details = res));
     console.log(this.details);
+  }
+  addmovie(nom: string){
+    this.data.movieComponent.addMovieInList(nom,this.data.movie.id+"");
   }
 
   onNoClick(): void {
