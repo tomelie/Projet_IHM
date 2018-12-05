@@ -25,7 +25,7 @@
     </div>
   </div>
   <div mat-dialog-actions align="end">
-    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>playlist_add</mat-icon></button>
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>playlist_add</mat-icon>Mes Listes</button>
     <mat-menu #menu="matMenu">
       <button *ngFor="let liste of data.listes | async" mat-menu-item (click)="addmovie(liste.nom)">
         <mat-icon>add</mat-icon>

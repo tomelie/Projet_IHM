@@ -20,6 +20,11 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  reName(){
+    console.log('rename à implémenter');
+  }
+
   removePlaylist(){
     this.appCom.removePlayList(this.namelist);
   }

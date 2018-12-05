@@ -59,10 +59,9 @@ export class MovieDialogComponent {
     public dialogRef: MatDialogRef<MovieDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
-    console.log(this);
-    tmdb.getMovie(data.movie.id).then(res => (this.details = res));
-    console.log(this.details);
+    tmdb.getMovie(data.movie.id).then(res => (this.details = res)); 
   }
+  
   addmovie(nom: string){
     this.data.movieComponent.addMovieInList(nom,this.data.movie.id+"");
   }
