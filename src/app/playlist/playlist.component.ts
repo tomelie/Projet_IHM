@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router"
+import { ActivatedRoute, Router } from "@angular/router"
 import {MovieResponse} from '../tmdb-data/Movie';
 import { AppComponent } from '../app.component';
 import {TmdbService} from '../tmdb.service';
@@ -13,20 +13,25 @@ export class PlaylistComponent implements OnInit {
   private namelist: string;
   listMovies: MovieResponse[];
 
-  constructor(private tmdb: TmdbService,private route: ActivatedRoute,private appC:AppComponent) {
+  constructor(private tmdb: TmdbService,private router: Router,private route: ActivatedRoute,private appC:AppComponent) {
     this.route.params.subscribe(params => {
       this.namelist = params.namelist;
-    });
-    this.appC.lists.subscribe(value => { 
-      value.forEach(liste =>{
-        if(liste.nom === this.namelist){
-          this.listMovies = [];
-          liste.films.forEach(element => {
-            this.tmdb.getMovie(element).then(res => this.listMovies.push(res));
-          });
-        }
+      if(this.appC.lists === undefined){
+        router.navigate(['/home']);
+      }
+      this.appC.lists.subscribe(value => { 
+        value.forEach(liste =>{
+          if(liste.nom === this.namelist){
+            this.listMovies = [];
+            liste.films.forEach(element => {
+              this.tmdb.getMovie(element).then(res => this.listMovies.push(res));
+            });
+          }
+        });
       });
     });
+    
+    
   }
 
   

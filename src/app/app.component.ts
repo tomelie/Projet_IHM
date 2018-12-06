@@ -37,7 +37,7 @@ export class AppComponent {
 
   }
 
-  private load(){
+  public load(){
     this.myLists = [];
     this.tmdb.init('25ea93320b0ede2eb2ce7b2661886a0e');
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
