@@ -20,6 +20,9 @@ export interface DialogData {
 export class MovieComponent implements OnInit {
   @Input()
   movie: MovieResponse;
+  @Input()
+  namelist: string;
+
   private appCom: AppComponent;
   constructor(public MovieDialog: MatDialog,private appC:AppComponent) {
     this.appCom = appC;
@@ -39,12 +42,16 @@ export class MovieComponent implements OnInit {
     return this.appCom.lists;
   }
 
-  private addmovie(nom: string){
-    this.addMovieInList(nom,this.movie.id + "");
+  private removeMovie(){
+    this.appC.removemovieInplaylist(this.namelist,this.movie)
   }
 
-  public addMovieInList(nom: string,idmovie: string){
-    this.appCom.addmovieInplayliste(nom,idmovie);
+  private addmovie(nom: string){
+    this.addMovieInList(nom,this.movie);
+  }
+
+  public addMovieInList(nom: string,movie: MovieResponse){
+    this.appCom.addmovieInplayliste(nom,movie);
   }
 }
 
@@ -63,7 +70,7 @@ export class MovieDialogComponent {
   }
   
   addmovie(nom: string){
-    this.data.movieComponent.addMovieInList(nom,this.data.movie.id+"");
+    this.data.movieComponent.addMovieInList(nom,this.data.movie);
   }
 
   onNoClick(): void {

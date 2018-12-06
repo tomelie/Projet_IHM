@@ -18,7 +18,7 @@ export class AppComponent {
 
   private _movie: MovieResponse;
   private _user: User;
-  private dbData: Observable<any>;
+  private dbData: Observable<any> = null;
 
   //playlist
   private listsPathPlaylist:string;
@@ -67,7 +67,7 @@ export class AppComponent {
   }
 
 
-  public findlist(name: string): Liste{
+  private findlist(name: string): Liste{
     let alist =null;
     this.myLists.forEach(list =>{
       if(list.nom === name){
@@ -102,13 +102,14 @@ export class AppComponent {
     }
   }
 
-  public addmovieInplayliste(name: string,idFilm: string){
+  public addmovieInplayliste(name: string,movie: MovieResponse){
     let mylist = this.findlist(name);
     if(mylist !== null){
+      const namel = String(movie.id);
       if( mylist.films !== undefined){
-        mylist.films.push(idFilm);
+        mylist.films.push(namel);
       }else{
-        mylist.films = [idFilm];
+        mylist.films = [namel];
       }
       console.log("ajouter le file "+mylist+" dans la list " +mylist.nom);
       this.playlist.update(mylist.key,mylist);
@@ -116,9 +117,28 @@ export class AppComponent {
     }
   }
 
-
+  public removemovieInplaylist(name: string,movie: MovieResponse){
+    let alist = this.findlist(name);
+    if(alist !== null){
+      if( alist.films !== undefined){
+        console.log("av"+alist.films);
+        alist.films = this.removeElementList(alist.films,movie.id+"");
+        console.log("ap "+alist.films);
+        this.playlist.update(alist.key,alist);
+        this.myLists = [];
+      }
+    }
+  }
 
   //playlist
+
+  private removeElementList(list: string[],element:string): string[]{
+    const index: number = list.indexOf(element);
+    if (index !== -1) {
+        list.splice(index, 1);
+    }   
+    return list;
+  }
 
   get movie(): MovieResponse {
     return this._movie;

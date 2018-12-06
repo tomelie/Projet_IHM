@@ -10,18 +10,18 @@ import {TmdbService} from '../tmdb.service';
   styleUrls: ['./playlist.component.css']
 })
 export class PlaylistComponent implements OnInit {
-  private namelist: string;
+  nameList: string;
   listMovies: MovieResponse[];
 
   constructor(private tmdb: TmdbService,private router: Router,private route: ActivatedRoute,private appC:AppComponent) {
     this.route.params.subscribe(params => {
-      this.namelist = params.namelist;
-      if(this.appC.lists === undefined){
+      this.nameList = params.namelist;
+      if(appC.lists === null){
         router.navigate(['/home']);
       }
-      this.appC.lists.subscribe(value => { 
+      appC.lists.subscribe(value => { 
         value.forEach(liste =>{
-          if(liste.nom === this.namelist){
+          if(liste.nom === this.nameList){
             this.listMovies = [];
             liste.films.forEach(element => {
               this.tmdb.getMovie(element).then(res => this.listMovies.push(res));
@@ -48,6 +48,6 @@ export class PlaylistComponent implements OnInit {
   }
 
   removePlaylist(){
-    this.appC.removePlayList(this.namelist);
+    this.appC.removePlayList(this.nameList);
   }
 }
