@@ -6,7 +6,6 @@ import {SearchPeopleResponse} from '../tmdb-data/SearchPeople';
 import { AppComponent } from '../app.component';
 import {Observable} from 'rxjs';
 import { User } from 'firebase';
-import { Liste } from '../tmdb-data/List';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
@@ -52,7 +51,7 @@ export class SidebarComponent implements OnInit {
 
   buildregex(){
     let regexString = "";
-    this.appCom.listname.forEach(function(ele){
+    this.appCom.listname.forEach(ele => {
       regexString += ele.nom+'|';
     });
     regexString = regexString.substring(0,regexString.length-1);

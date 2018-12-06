@@ -18,9 +18,7 @@ export class AppComponent {
 
   private _movie: MovieResponse;
   private _user: User;
-  private dbData: Observable<any>;
-  private dataB:AngularFireDatabase
-  private router: Router;
+  private dbData: Observable<any> = null;
 
   //playlist
   private listsPathPlaylist:string;
@@ -28,18 +26,27 @@ export class AppComponent {
   private myLists: Liste[];
   //playlist
 
-  constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase,private myRouter: Router) {
-    this.router = myRouter;
+  constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase,private router: Router) {
+    this.load();
+    // setTimeout( () =>
+    //   tmdb.init('fa7257552d5c28ea58a4b8867f6326e8') // Clef de TMDB
+    //       .getMovie(13)
+    //       .then( (m: MovieResponse) => console.log('Movie 13:', this._movie = m) )
+    //       .catch( err => console.error('Error getting listmovie:', err) ),
+    //   1000 );
+
+  }
+
+  public load(){
     this.myLists = [];
-    tmdb.init('25ea93320b0ede2eb2ce7b2661886a0e');
+    this.tmdb.init('25ea93320b0ede2eb2ce7b2661886a0e');
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
       this._user = u;
-      this.dataB = db;
       this.listsPathPlaylist = `lists/${u.uid}/playlist`;
-      const lists = db.list(this.listsPathPlaylist);
+      const lists = this.db.list(this.listsPathPlaylist);
       this.dbData = lists.valueChanges();
       //playlist
-      this.playlist = db.list(this.listsPathPlaylist);
+      this.playlist = this.db.list(this.listsPathPlaylist);
       this.playlist.snapshotChanges().subscribe( data => {
         data.forEach(value => { 
           const alist: Liste = {
@@ -52,13 +59,6 @@ export class AppComponent {
       });
       //playlist
     });
-    // setTimeout( () =>
-    //   tmdb.init('fa7257552d5c28ea58a4b8867f6326e8') // Clef de TMDB
-    //       .getMovie(13)
-    //       .then( (m: MovieResponse) => console.log('Movie 13:', this._movie = m) )
-    //       .catch( err => console.error('Error getting listmovie:', err) ),
-    //   1000 );
-
   }
 
   //playlist
@@ -66,9 +66,10 @@ export class AppComponent {
     return this.myLists;
   }
 
-  private samelist(name: string): Liste{
+
+  private findlist(name: string): Liste{
     let alist =null;
-    this.myLists.forEach(function(list){
+    this.myLists.forEach(list =>{
       if(list.nom === name){
        alist = list;
       }
@@ -83,7 +84,7 @@ export class AppComponent {
   }
 
   public addPlaylist(name: string){
-    if(this.samelist(name) === null){
+    if(this.findlist(name) === null){
       const alist: Liste = {
         nom: name,
         films: []
@@ -93,7 +94,7 @@ export class AppComponent {
   }
 
   public removePlayList(name: string){
-    let mylist = this.samelist(name);
+    let mylist = this.findlist(name);
     if(mylist !== null){
       console.log('remove ' + name);
       this.playlist.remove(mylist.key);
@@ -101,13 +102,14 @@ export class AppComponent {
     }
   }
 
-  public addmovieInplayliste(name: string,idFilm: string){
-    let mylist = this.samelist(name);
+  public addmovieInplayliste(name: string,movie: MovieResponse){
+    let mylist = this.findlist(name);
     if(mylist !== null){
+      const namel = String(movie.id);
       if( mylist.films !== undefined){
-        mylist.films.push(idFilm);
+        mylist.films.push(namel);
       }else{
-        mylist.films = [idFilm];
+        mylist.films = [namel];
       }
       console.log("ajouter le file "+mylist+" dans la list " +mylist.nom);
       this.playlist.update(mylist.key,mylist);
@@ -115,7 +117,28 @@ export class AppComponent {
     }
   }
 
+  public removemovieInplaylist(name: string,movie: MovieResponse){
+    let alist = this.findlist(name);
+    if(alist !== null){
+      if( alist.films !== undefined){
+        console.log("av"+alist.films);
+        alist.films = this.removeElementList(alist.films,movie.id+"");
+        console.log("ap "+alist.films);
+        this.playlist.update(alist.key,alist);
+        this.myLists = [];
+      }
+    }
+  }
+
   //playlist
+
+  private removeElementList(list: string[],element:string): string[]{
+    const index: number = list.indexOf(element);
+    if (index !== -1) {
+        list.splice(index, 1);
+    }   
+    return list;
+  }
 
   get movie(): MovieResponse {
     return this._movie;

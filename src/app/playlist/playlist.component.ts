@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router"
+import {MovieResponse} from '../tmdb-data/Movie';
 import { AppComponent } from '../app.component';
+import {TmdbService} from '../tmdb.service';
 
 @Component({
   selector: 'app-playlist',
@@ -8,19 +10,44 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./playlist.component.css']
 })
 export class PlaylistComponent implements OnInit {
-  private namelist: string;
-  private appCom: AppComponent;
+  nameList: string;
+  listMovies: MovieResponse[];
 
-  constructor(private route: ActivatedRoute,private appC:AppComponent) {
-    this.appCom = appC;
+  constructor(private tmdb: TmdbService,private router: Router,private route: ActivatedRoute,private appC:AppComponent) {
     this.route.params.subscribe(params => {
-      this.namelist = params.namelist;
-    })
-   }
+      this.nameList = params.namelist;
+      if(appC.lists === null){
+        router.navigate(['/home']);
+      }
+      appC.lists.subscribe(value => { 
+        value.forEach(liste =>{
+          if(liste.nom === this.nameList){
+            this.listMovies = [];
+            liste.films.forEach(element => {
+              this.tmdb.getMovie(element).then(res => this.listMovies.push(res));
+            });
+          }
+        });
+      });
+    });
+    
+    
+  }
 
+  
   ngOnInit() {
   }
+
+  get movies():MovieResponse[]{
+    return this.listMovies;
+  }
+     
+
+  reName(){
+    console.log('rename à implémenter');
+  }
+
   removePlaylist(){
-    this.appCom.removePlayList(this.namelist);
+    this.appC.removePlayList(this.nameList);
   }
 }

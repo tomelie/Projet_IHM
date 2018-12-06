@@ -1,8 +1,8 @@
 <section *ngIf="details" class="mat-typography">
   <div mat-dialog-content fxLayout='column'>
     <div fxLayout='row wrap' fxLayoutAlign="start" fxFlex="100">
-      <img *ngIf="movie.poster_path" fxFlex="20" style="max-width: 100%;" mat-raised-button src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{details.poster_path}}"
-        alt="movie poster layout-fill">
+      <img *ngIf="data.movie.poster_path" fxFlex="20" style="max-width: 100%;" mat-raised-button src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{details.poster_path}}"
+        alt="data.movie poster layout-fill">
       <div fxFlex="2"> </div>
       <div fxFlex="78">
         <h2 mat-dialog-title> {{ details.title }} </h2>
@@ -25,9 +25,13 @@
     </div>
   </div>
   <div mat-dialog-actions align="end">
-    <button mat-button>
-      <mat-icon>playlist_add</mat-icon> Favoris
-    </button>
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>playlist_add</mat-icon>Mes Listes</button>
+    <mat-menu #menu="matMenu">
+      <button *ngFor="let liste of data.listes | async" mat-menu-item (click)="addmovie(liste.nom)">
+        <mat-icon>add</mat-icon>
+        {{liste.nom}}
+      </button>
+    </mat-menu>
     <button mat-button mat-dialog-close>Fermer</button>
   </div>
 

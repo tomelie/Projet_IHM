@@ -1,3 +1,4 @@
+<mat-toolbar *ngIf="user"><mat-icon>person</mat-icon>{{user.displayName}}</mat-toolbar>
 <form (submit)="sdSearchMovie(searchInputMovie.value)" class="form-search">
   <mat-form-field class="input-general" class="field-search">
     <input matInput placeholder="Rechercher un Film" #searchInputMovie />
