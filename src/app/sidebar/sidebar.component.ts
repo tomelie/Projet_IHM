@@ -6,7 +6,6 @@ import {SearchPeopleResponse} from '../tmdb-data/SearchPeople';
 import { AppComponent } from '../app.component';
 import {Observable} from 'rxjs';
 import { User } from 'firebase';
-import { Liste } from '../tmdb-data/List';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
