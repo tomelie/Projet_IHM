@@ -116,8 +116,8 @@ export class AppComponent {
       }
       console.log("ajouter le film "+mylist+" dans la list " +mylist.nom);
       this.playlist.update(mylist.key,mylist);
-      this.openMsgAction(" Ajouter le film '"+movie.title +"' dans '" + mylist.nom+"'",1500);
       this.myLists = [];
+      this.openMsgAction(" Ajouter le film '"+movie.title +"' dans '" + mylist.nom+"'",1500);
     }
   }
 
@@ -129,8 +129,8 @@ export class AppComponent {
         alist.films = this.removeElementList(alist.films,movie.id+"");
         console.log("ap "+alist.films);
         this.playlist.update(alist.key,alist);
-        this.openMsgAction(" Le film a bien été retirer de "+ alist.nom,1500);
         this.myLists = [];
+        this.openMsgAction(" Le film a bien été retirer de "+ alist.nom,1500);
       }
     }
   }
