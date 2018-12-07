@@ -1,8 +1,6 @@
-<div *ngIf="listMovies" layout="row" flex>
-    <h3> {{namelist}}</h3>
-    <button mat-flat-button color="primary" (click)="reName()"><mat-icon>edit</mat-icon></button>
-    <button mat-flat-button color="primary" (click)="removePlaylist()"><mat-icon>delete</mat-icon></button>
-</div>
+<h3> {{namelist}}</h3>
+<button mat-flat-button color="primary" (click)="reName()"><mat-icon>edit</mat-icon></button>
+<button mat-flat-button color="primary" (click)="removePlaylist()"><mat-icon>delete</mat-icon></button>
 <section *ngIf="movies" fxLayout='row wrap' fxLayoutAlign="start">
     <mat-card *ngFor="let movie of movies" fxFlex="20%" fxFlex.lt-lg="50%" fxLayout="row wrap">
         <app-movie [movie]="movie" [namelist]="nameList"></app-movie>

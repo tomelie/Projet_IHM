@@ -126,7 +126,7 @@ export class DialogOverviewExampleDialog {
   
   aFormControl = new FormControl('', [
     Validators.required,
-    Validators.pattern("(?!("+this.data.lists+"))([0-9A-Za-z-])*"),
+    Validators.pattern("(?!("+this.data.lists+"))(.)*"),
   ]);
   matcher = new MyErrorStateMatcher();
   onNoClick(): void {
