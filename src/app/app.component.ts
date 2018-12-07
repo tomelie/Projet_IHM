@@ -8,6 +8,7 @@ import {AngularFireDatabase,AngularFireList} from '@angular/fire/database';
 import {filter} from 'rxjs/operators';
 import { Liste } from './tmdb-data/List';
 import {Router} from "@angular/router";
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,7 @@ export class AppComponent {
   private myLists: Liste[];
   //playlist
 
-  constructor(private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase,private router: Router) {
+  constructor(public snackBar: MatSnackBar,private tmdb: TmdbService, public anAuth: AngularFireAuth, private db: AngularFireDatabase,private router: Router) {
     this.load();
     // setTimeout( () =>
     //   tmdb.init('fa7257552d5c28ea58a4b8867f6326e8') // Clef de TMDB
@@ -90,6 +91,7 @@ export class AppComponent {
         films: []
       };
       this.playlist.push(alist);
+      this.openMsgAction(" La playliste "+ name +" à bien été créer",700);
     }
   }
 
@@ -98,6 +100,7 @@ export class AppComponent {
     if(mylist !== null){
       console.log('remove ' + name);
       this.playlist.remove(mylist.key);
+      this.openMsgAction(" La playliste "+ name +" à bien été supprimer",700);
       this.router.navigate(['/home']);
     }
   }
@@ -111,8 +114,9 @@ export class AppComponent {
       }else{
         mylist.films = [namel];
       }
-      console.log("ajouter le file "+mylist+" dans la list " +mylist.nom);
+      console.log("ajouter le film "+mylist+" dans la list " +mylist.nom);
       this.playlist.update(mylist.key,mylist);
+      this.openMsgAction(" Ajouter le film '"+movie.title +"' dans '" + mylist.nom+"'",1500);
       this.myLists = [];
     }
   }
@@ -125,9 +129,18 @@ export class AppComponent {
         alist.films = this.removeElementList(alist.films,movie.id+"");
         console.log("ap "+alist.films);
         this.playlist.update(alist.key,alist);
+        this.openMsgAction(" Le film a bien été retirer de "+ alist.nom,1500);
         this.myLists = [];
       }
     }
+  }
+
+  openMsgAction(message: string, aduration:number) {
+    this.snackBar.open(message, "Fermer", {
+      duration: aduration,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+    });
   }
 
   //playlist

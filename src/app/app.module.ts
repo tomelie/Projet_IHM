@@ -39,6 +39,7 @@ import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   entryComponents: [ActorDialogComponent, MovieDialogComponent,DialogOverviewExampleDialog],
   imports: [
+    MatSnackBarModule,
     MatMenuModule,
     ReactiveFormsModule,
     BrowserModule,
