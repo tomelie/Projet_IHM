@@ -121,7 +121,7 @@ export class DialogOverviewExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-      
+      console.log('test-'+ data.lists)
     }
   
   aFormControl = new FormControl('', [
