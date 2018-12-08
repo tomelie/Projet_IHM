@@ -94,33 +94,35 @@ export class AppComponent {
         films: []
       };
       this.playlist.push(alist);
+      this.myLists = [];
       this.openMsgAction(" La playliste "+ name +" à bien été créer",1000);
     }
   }
 
   public removePlayList(list: Liste){
-    let name = list.nom;
-    if(list !== null || list !== undefined){
-      console.log('remove ' + name);
-      this.playlist.remove(list.key);
-      this.openMsgAction(" La playliste "+ name +" à bien été supprimer",1000);
+    let alist = this.findlist(list.nom);
+    if(alist !== null || alist !== undefined){
+      console.log('remove ' + alist.nom);
+      this.playlist.remove(alist.key);
+      this.myLists = [];
+      this.openMsgAction(" La playliste "+ alist.nom +" à bien été supprimer",1000);
       this.router.navigate(['/home']);
     }
   }
 
   public addmovieInplayliste(name: string,movie: MovieResponse){
-    let mylist = this.findlist(name);
-    if(mylist !== null){
+    let alist = this.findlist(name);
+    if(alist !== null){
       const namel = String(movie.id);
-      if( mylist.films !== undefined){
-        mylist.films.push(namel);
+      if( alist.films !== undefined){
+        alist.films.push(namel);
       }else{
-        mylist.films = [namel];
+        alist.films = [namel];
       }
-      console.log("ajouter le film "+mylist+" dans la list " +mylist.nom);
-      this.playlist.update(mylist.key,mylist);
+      console.log("ajouter le film "+alist+" dans la list " +alist.nom);
+      this.playlist.update(alist.key,alist);
       this.myLists = [];
-      this.openMsgAction(" Ajouter le film '"+movie.title +"' dans '" + mylist.nom+"'",1500);
+      this.openMsgAction(" Ajouter le film '"+movie.title +"' dans '" + alist.nom+"'",1500);
     }
   }
 
