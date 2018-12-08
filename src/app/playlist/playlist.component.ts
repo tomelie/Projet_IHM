@@ -31,25 +31,34 @@ export class PlaylistComponent implements OnInit {
       if(appC.lists === null){
         router.navigate(['/home']);
       }
-      appC.lists.subscribe(value => {
-        this.listMovies = [];
-        let reglexString = "";
-        value.forEach(liste =>{
-          if(liste.nom === this.nameList){
-            this.liste = liste;
-            liste.films.forEach(element => {
-              this.tmdb.getMovie(element).then(res => this.listMovies.push(res));
-            });
-          }else{
-            console.log(liste.nom);
-            reglexString += liste.nom +"|";
-          }
-        });
-        this.otherListsReglex = reglexString.substring(0,reglexString.length-1);
-      });
+      this.load();
     });
   }
   
+  private load(){
+    this.appC.lists.subscribe(value => {
+      this.listMovies = [];
+      let reglexString = "";
+      value.forEach(liste =>{
+        if(liste.nom === this.nameList){
+          this.liste = liste;
+          liste.films.forEach(element => {
+            this.tmdb.getMovie(element).then(res => this.listMovies.push(res));
+          });
+        }else{
+          console.log(liste.nom);
+          reglexString += liste.nom +"|";
+        }
+      });
+      reglexString = reglexString.substring(0,reglexString.length-1);
+      if(reglexString === ""){
+        reglexString = " ";
+      }
+      this.otherListsReglex = reglexString;
+    });
+  }
+
+
   ngOnInit() {
   }
 

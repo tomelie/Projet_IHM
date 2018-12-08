@@ -28,6 +28,7 @@ export class SidebarComponent implements OnInit {
   constructor(private tmdb: TmdbService,public dialog: MatDialog, private appC:AppComponent) {
     this.appCom = appC;
   }
+  
   openDialog(): void {
     this.buildregex();
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
@@ -55,7 +56,9 @@ export class SidebarComponent implements OnInit {
       regexString += ele.nom+'|';
     });
     regexString = regexString.substring(0,regexString.length-1);
-    console.log(regexString);
+    if(regexString === ""){
+      regexString = " ";
+    }
     this.regexlist = regexString;
   }
 

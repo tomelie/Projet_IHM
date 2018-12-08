@@ -1,7 +1,7 @@
 <div class="bar-tilre-playlist">
     <h2 *ngIf="!isRename" class="titre-playlist">{{nameList}}</h2>
-    <button mat-flat-button *ngIf="!isRename" class="button-edit-name-playlist" (click)="activeRename()"><mat-icon>edit</mat-icon></button>
-    <button mat-flat-button *ngIf="!isRename" class="button-remove-playlist" (click)="removePlaylist()"><mat-icon>delete</mat-icon></button>
+    <button mat-flat-button *ngIf="!isRename" color="primary" class="button-edit-name-playlist" (click)="activeRename()"><mat-icon>edit</mat-icon></button>
+    <button mat-flat-button *ngIf="!isRename" color="primary" class="button-remove-playlist" (click)="removePlaylist()"><mat-icon>delete</mat-icon></button>
     
     <mat-form-field class="titre-playlist" *ngIf="isRename">
         <input matInput  placeholder="nom playlist" [(ngModel)]="newName" [formControl]="aFormControl" [errorStateMatcher]="matcher">
