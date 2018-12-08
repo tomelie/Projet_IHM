@@ -38,7 +38,7 @@ export class AppComponent {
 
   }
 
-  public load(){
+  private load(){
     this.myLists = [];
     this.tmdb.init('25ea93320b0ede2eb2ce7b2661886a0e');
     this.anAuth.user.pipe(filter( u => !!u )).subscribe( u => {
@@ -46,7 +46,6 @@ export class AppComponent {
       this.listsPathPlaylist = `lists/${u.uid}/playlist`;
       const lists = this.db.list(this.listsPathPlaylist);
       this.dbData = lists.valueChanges();
-      //playlist
       this.playlist = this.db.list(this.listsPathPlaylist);
       this.playlist.snapshotChanges().subscribe( data => {
         data.forEach(value => { 
@@ -58,7 +57,6 @@ export class AppComponent {
           this.myLists.push(alist);
         });
       });
-      //playlist
     });
   }
 
