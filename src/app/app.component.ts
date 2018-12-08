@@ -67,6 +67,11 @@ export class AppComponent {
     return this.myLists;
   }
 
+  public renamePlaylist(list:Liste,newName: string){
+    list.nom = newName;
+    this.playlist.update(list.key,list);
+    this.openMsgAction(" La playliste s'appelle "+ name,1000);
+  }
 
   private findlist(name: string): Liste{
     let alist =null;
@@ -91,16 +96,16 @@ export class AppComponent {
         films: []
       };
       this.playlist.push(alist);
-      this.openMsgAction(" La playliste "+ name +" à bien été créer",700);
+      this.openMsgAction(" La playliste "+ name +" à bien été créer",1000);
     }
   }
 
-  public removePlayList(name: string){
-    let mylist = this.findlist(name);
-    if(mylist !== null){
+  public removePlayList(list: Liste){
+    let name = list.nom;
+    if(list !== null || list !== undefined){
       console.log('remove ' + name);
-      this.playlist.remove(mylist.key);
-      this.openMsgAction(" La playliste "+ name +" à bien été supprimer",700);
+      this.playlist.remove(list.key);
+      this.openMsgAction(" La playliste "+ name +" à bien été supprimer",1000);
       this.router.navigate(['/home']);
     }
   }
