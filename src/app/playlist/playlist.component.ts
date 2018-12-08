@@ -34,7 +34,7 @@ export class PlaylistComponent implements OnInit {
       this.load();
     });
   }
-  
+
   private load(){
     this.appC.lists.subscribe(value => {
       this.listMovies = [];
@@ -50,11 +50,7 @@ export class PlaylistComponent implements OnInit {
           reglexString += liste.nom +"|";
         }
       });
-      reglexString = reglexString.substring(0,reglexString.length-1);
-      if(reglexString === ""){
-        reglexString = " ";
-      }
-      this.otherListsReglex = reglexString;
+      this.otherListsReglex = reglexString+ " ";
     });
   }
 
