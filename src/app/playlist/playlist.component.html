@@ -6,11 +6,11 @@
     <mat-form-field class="titre-playlist" *ngIf="isRename">
         <input matInput  placeholder="nom playlist" [(ngModel)]="newName" [formControl]="aFormControl" [errorStateMatcher]="matcher">
         <mat-error *ngIf="aFormControl.hasError('pattern') && !aFormControl.hasError('required')">
-                nom de playlist existant déjà
-              </mat-error>
+            Nom déjà <strong>existant</strong> ou <strong>invalide</strong>
+        </mat-error>
         <mat-error *ngIf="aFormControl.hasError('required')">
-                <strong>Remplir</strong> le champ
-              </mat-error>
+            <strong>Remplir</strong> le champ
+        </mat-error>
     </mat-form-field>
     <button mat-flat-button *ngIf="isRename" color="primary" [disabled]="aFormControl.hasError('pattern') || aFormControl.hasError('required')" (click)="reName()">Valider</button>
     <button mat-flat-button *ngIf="isRename" class="button-playlist-edit-annuler" color="primary" (click)="reNameAnnuler()">Annuler</button>
