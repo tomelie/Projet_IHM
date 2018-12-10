@@ -68,6 +68,7 @@ export class AppComponent {
   public renamePlaylist(list:Liste,newName: string){
     list.nom = newName;
     this.playlist.update(list.key,list);
+    this.myLists = [];
     this.openMsgAction(" La playliste s'appelle "+ name,1000);
   }
 
