@@ -22,7 +22,7 @@ import {
   MatToolbarModule,
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent, DialogOverviewExampleDialog } from './sidebar/sidebar.component';
 import { UserComponent } from './user/user.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OverlayconnexionComponent } from './overlayconnexion/overlayconnexion.component';
@@ -33,9 +33,13 @@ import { ListmovieComponent, ListmovieCons} from './listmovie/listmovie.componen
 import { AppRoutingModule } from './app-routing.module';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { NavbarComponent } from './navbar/navbar.component';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
+import { NavComponent } from './nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { PlaylistComponent } from './playlist/playlist.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -50,13 +54,17 @@ import {MatSelectModule} from '@angular/material/select';
     MovieComponent,
     ListmovieComponent,
     MovieDialogComponent,
+    DialogOverviewExampleDialog,
     MainPageComponent,
-    NavbarComponent,
-    ListmovieCons
+    ListmovieCons,
+    NavComponent,
+    PlaylistComponent
   ],
-  entryComponents: [ActorDialogComponent, MovieDialogComponent],
+  entryComponents: [ActorDialogComponent, MovieDialogComponent,DialogOverviewExampleDialog],
   imports: [
+    MatSnackBarModule,
     MatMenuModule,
+    ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -75,7 +83,10 @@ import {MatSelectModule} from '@angular/material/select';
     FlexLayoutModule,
     MatIconModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [TmdbService],
   bootstrap: [AppComponent],

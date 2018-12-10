@@ -1,0 +1,23 @@
+<div class="bar-tilre-playlist">
+    <h2 *ngIf="!isRename" class="titre-playlist">{{nameList}}</h2>
+    <button mat-flat-button *ngIf="!isRename" color="primary" class="button-edit-name-playlist" (click)="activeRename()"><mat-icon>edit</mat-icon></button>
+    <button mat-flat-button *ngIf="!isRename" color="primary" class="button-remove-playlist" (click)="removePlaylist()"><mat-icon>delete</mat-icon></button>
+    
+    <mat-form-field class="titre-playlist" *ngIf="isRename">
+        <input matInput  placeholder="nom playlist" [(ngModel)]="newName" [formControl]="aFormControl" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="aFormControl.hasError('pattern') && !aFormControl.hasError('required')">
+            Nom déjà <strong>existant</strong> ou <strong>invalide</strong>
+        </mat-error>
+        <mat-error *ngIf="aFormControl.hasError('required')">
+            <strong>Remplir</strong> le champ
+        </mat-error>
+    </mat-form-field>
+    <button mat-flat-button *ngIf="isRename" color="primary" [disabled]="aFormControl.hasError('pattern') || aFormControl.hasError('required')" (click)="reName()">Valider</button>
+    <button mat-flat-button *ngIf="isRename" class="button-playlist-edit-annuler" color="primary" (click)="reNameAnnuler()">Annuler</button>
+    
+</div>
+<section *ngIf="movies" fxLayout='row wrap' fxLayoutAlign="start">
+    <mat-card *ngFor="let movie of movies" fxFlex="20%" fxFlex.lt-lg="50%" fxLayout="row wrap">
+        <app-movie [movie]="movie" [namelist]="nameList"></app-movie>
+    </mat-card>
+</section>

@@ -1,0 +1,22 @@
+  .bar-titre-playlist {
+    display: inline-block;
+    display: block;
+  }
+
+  .titre-playlist{
+    display: inline-block;
+    padding-left: 3%;
+  }
+
+  .button-edit-name-playlist {
+    display: inline-block;
+    margin-left: 1%;
+  }
+
+  .button-remove-playlist {
+    display: inline-block;
+    margin-left: 1%;
+  }
+  .button-playlist-edit-annuler{
+    margin-left: 1%;
+  }
